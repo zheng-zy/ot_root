@@ -58,3 +58,20 @@ message SubRiskResp
   required int32  ret_code = 1;//错误码
   optional string  msg = 2;//错误信息
 }
+
+//禁用配对风控/启动配对风控
+message BanPairControlReq
+{
+  required uint32  ret = 1;//0表示开启，1表示关闭  
+}
+
+message BanPairControlResp
+{
+  required int32  ret_code = 1;//错误码
+  optional string  msg = 2;//错误信息
+}
+
+message QueryBanPairControlState
+{
+  required uint32  ret = 1;//0表示开启，1表示关闭  
+}

@@ -54,7 +54,8 @@ message stock_info
 //禁买禁卖 添加操作请求
 message Stock_Ban_Add_Req
 {
-  optional ban_buy_ban_sell_info ban_info = 1;//禁卖禁卖信息
+  required string product_id = 1; //产品ID
+  optional ban_buy_ban_sell_info ban_info = 2;//禁卖禁卖信息
 };
 
 //禁买禁卖 添加操作应答
@@ -68,6 +69,7 @@ message Stock_Ban_Add_Resp
 //禁买禁卖 删除操作请求
 message Stock_Ban_Del_Req
 {
+  required string product_id = 1; //产品ID
   optional ban_buy_ban_sell_info ban_info = 2;//禁卖禁卖信息
 };
 

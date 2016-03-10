@@ -294,7 +294,7 @@ message ReplaceFillPolicy
 message SubscribePolicyRequest
 {
     optional    bytes      policy_id                   = 1; //订阅指定的policy_id。
-    optional    uint32     type                        = 2; //订阅类型，在policy_id没有设置的时候有效。目前仅支持：0：取消订阅；1：全部订阅；2：手工篮子订阅（只会推送ExpertMode的篮子）
+    optional    uint32     type                        = 2; //订阅类型，在policy_id没有设置的时候有效。目前仅支持：0：取消订阅；1：全部订阅；2：手工篮子订阅（只会推送ExpertMode的篮子）；3：创建策略订阅（只推送后续创建的策略）
 }
 
 //订阅策略响应
@@ -379,7 +379,8 @@ message StockPolicy
       uint32 price_level = 4; //价格档位。在不同的策略中，价格可能表示不同地方使用
       int64 price = 5; //价格(扩大10000倍后的值)
     }
-    optional    uint32     reorder_interval            = 6; //撤补间隔(现货定时买卖时填写，期货每笔都填，默认为客户端直接填写1000，0表示不启用)。目前没用，先保留。
+    optional    uint32     price_ratio                 = 6; //风控参数配置的折溢价限制比例，超出这个比例的下单失败。基数为 100000，例如最新价上浮2%下单，则此处填 2000
+    optional    uint32     reorder_interval            = 7; //撤补间隔(现货定时买卖时填写，期货每笔都填，默认为客户端直接填写1000，0表示不启用)。目前没用，先保留。
 }
 
 //单笔期货买卖。
@@ -396,18 +397,19 @@ message FuturePolicy
                 uint32     price_level                 = 4; //价格档位。在不同的策略中，价格可能表示不同地方使用
                 int64      price                       = 5; //价格(扩大10000倍后的值)
     }
-    required    uint32     open_close_flag             = 6; //开平仓标志。0:自动；1:开仓；2:平仓
+    optional    uint32     price_ratio                 = 6; //风控参数配置的折溢价限制比例，超出这个比例的下单失败。基数为 100000，例如最新价上浮2%下单，则此处填 2000
+    required    uint32     open_close_flag             = 7; //开平仓标志。0:自动；1:开仓；2:平仓
     message ReoderParam
     {
-      optional    uint32     reorder_interval            = 1 [default = 1000]; //自动撤补间隔
-      optional    uint32     reorder_max_times           = 2; //自动撤补的最大次数。超出这个次数就不再撤补。0表示无限自动撤补。自动化用到。
+      optional    uint32     reorder_interval          = 1; //自动撤补间隔
+      optional    uint32     reorder_max_times         = 2; //自动撤补的最大次数。超出这个次数就不再撤补。0表示无限自动撤补。自动化用到。
       oneof reorder_setup
       {
         uint32     reorder_price_level         = 3; //自动撤补时候，所选择的价格档位。如果没有配置，则使用原配置。自动化用到。
         int32      reorder_step                = 4;//自动撤补每次在原下单价格基础上调整的点数。扩大10000倍的值。自动化用到。
       }
     }
-    optional ReoderParam reorder_param = 7; //自动撤补选项
+    optional    ReoderParam reorder_param                = 8; //自动撤补选项
 }
 
 //自定义篮子项。
@@ -427,10 +429,8 @@ message StockBasketPolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     optional    string     code                        = 2; //ETF代码（统一填二级市场代码）
     required    uint32     volume                      = 3; //篮子数
-    oneof price_type {
-    	uint32     price_level                 = 4; //价格档位。在篮子买卖界面用。
-    	int32      price_ratio                 = 5; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。在快速申赎界面用。
-    }
+    optional    uint32     price_level                 = 4; //价格档位。在篮子买卖界面用。
+    optional    uint32     price_ratio                 = 5; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。在快速申赎界面用。同时，该参数也是折溢价限制比例，超出这个比例的下单失败（price_level存在的话）。
     repeated    CustomBasketItem custom_items          = 6; //自定义篮子列表。当code不设置的时候，使用该参数。
     required    bool       expert_mode                 = 7; //专家模式。专门为篮子买卖界面设计，开启后支持替代补足、未完成篮子明细相关处理。
 }
@@ -456,7 +456,7 @@ message ETFBCOrRSPolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     required    string     code                        = 2; //ETF代码（统一填二级市场代码）
     required    uint32     volume                      = 3; //篮子(申赎)数量
-    required    int32      price_ratio                 = 4; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 4; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
     required    uint32     delayed_single              = 5; //风控参数配置的单只股票延时参数。
     required    uint32     delayed_max                 = 6; //风控参数配置的最大延迟参数。
 }
@@ -471,7 +471,7 @@ message ETFQuickPolicy
     required    string     code                        = 2; //ETF代码（统一填二级市场代码）
     required    uint32     volume                      = 3; //篮子(申赎)数量
     required    int64      price                       = 4; //买卖ETF的价格
-    required    int32      price_ratio                 = 5; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 5; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
     required    uint32     delayed_single              = 6; //风控参数配置的单只股票延时参数。
     required    uint32     delayed_max                 = 7; //风控参数配置的最大延迟参数。
 }
@@ -485,7 +485,7 @@ message ETFSpreadPositivePolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     required    string     code                        = 2; //ETF代码（统一填二级市场代码）
     required    uint32     volume                      = 3; //篮子(申赎)数量
-    required    int32      price_ratio                 = 4; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 4; //风控参数配置的篮子买卖最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
     required    uint32     delayed_single              = 5; //风控参数配置的单只股票延时参数。
     required    uint32     delayed_max                 = 6; //风控参数配置的最大延迟参数。
     required    string     future_code                 = 7; //期货代码
@@ -519,7 +519,7 @@ message StructuredFundABPolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     required    string     code                        = 2; //母基金代码。
     required    uint32     volume                      = 3; //母基金数量。
-    required    int32      price_ratio                 = 4; //AB基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 4; //AB基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
 }
 
 //分级基金拆分、合并
@@ -538,7 +538,7 @@ message StructuredFundBMOrSSPolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     required    string     code                        = 2; //母基金代码。
     required    uint32     volume                      = 3; //母基金数量。
-    required    int32      price_ratio                 = 4; //母基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 4; //母基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
 }
 
 //分级基金快合、快拆
@@ -548,8 +548,8 @@ message StructuredFundQuickPolicy
     required    PolicyBaseParam base_param             = 1; //基本参数
     required    string     code                        = 2; //母基金代码。
     required    uint32     volume                      = 3; //母基金数量。
-    required    int32      price_ratio                 = 4; //母基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
-    required    int32      ab_price_ratio              = 5; //子基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     price_ratio                 = 4; //母基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
+    required    uint32     ab_price_ratio              = 5; //子基金最新价格浮动比例。基数为 100000， 例如最新价上浮2%下单，则此处填 2000。
     optional    uint32     quick_split_flag            = 6; //快拆标志，快合就不需要填写了。0：快拆（默认值）；1：快拆B；2：快拆S
 }
 

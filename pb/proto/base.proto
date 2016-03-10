@@ -269,6 +269,10 @@ enum command_id
     PUSH_ATC_ORDER_SET_INFO                 = 0x8436;  //推送订阅ATC风控参数信息
     PUSH_ATC_DEC_BUTTON_INFO                = 0x8437;  //推送订阅ATC界面报单按钮操作频率参数信息
     PUSH_BAN_BUY_SELL_INFO                  = 0x8438;  //推送订阅禁卖禁卖信息
+    CMD_SET_BAN_PAIR_CONTROL_REQ            = 0x0439;  //禁用配对风控/启动配对风控,设置请求
+    CMD_SET_BAN_PAIR_CONTROL_RESP           = 0x8439;  //禁用配对风控/启动配对风控,设置返回
+    CMD_QUERY_BAN_PAIR_CONTROL_REQ          = 0x043A;  //禁用配对风控/启动配对风控,查询请求
+    CMD_QUERY_BAN_PAIR_CONTROL_RESP         = 0x843A;  //禁用配对风控/启动配对风控,设置返回
 
 
 

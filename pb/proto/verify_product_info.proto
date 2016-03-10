@@ -29,14 +29,14 @@ message Verify_Product_Query_Info
 //手工交易客户顿
 /////////////////////////////////////////////////////////////////////////////////////////
 //手工客户端登录验证  cmd_id: CMD_MTC_LOGIN_REQ
-message MTCLoginReq
+message LoginReq
 {
-    required string trader_id = 1;           //用户名
+    required string trader_id = 1;           //终端名
     required string password = 2;       //密码
 }
 
 //登录应答  cmd_id: CMD_MTC_LOGIN_RESP
-message MTCLoginResp
+message LoginResp
 {
   required int32 ret_code = 1;  //0表示返回成功
   optional string msg = 2;      //当返回有错误的时候，填充错误信息   
@@ -160,7 +160,9 @@ message RightQueryReq
 //获取交易权限应答 包体为空 cmd_id: CMD_QUERY_TRADER_RIGHTS_RESP
 message RightQueryResp
 {
-    repeated RightInfo right_info_list = 1;
+    required int32 ret_code = 1;  //0表示返回操作成功
+    optional string msg = 2;      //当返回有错误的时候，填充错误信息   
+    repeated RightInfo right_info_list = 3;
 }
 
 message RightInfo
@@ -176,9 +178,10 @@ message RightInfo
     required bool is_option = 9;//期权授权
     required uint64 repurchase_max_money = 10;//逆回购操作总金额
     required uint64 single_basket_max = 11;//单笔篮子最大金额授权
-    required int32 basket_stock_batch_discount_rate = 12; //篮子股票批量买卖报单折溢价比例
-    required int32 etf_iopv_discount_rate = 13;//ETF根据申赎IOPV报单的折溢价比例
-    required int32 future_order_discount_rate = 14;//期货报单折溢价比例
+    required string basket_stock_batch_discount_rate = 12; //篮子股票批量买卖报单折溢价比例
+    required string etf_iopv_discount_rate = 13;//ETF根据申赎IOPV报单的折溢价比例
+    required string future_order_discount_rate = 14;//期货报单折溢价比例
+    required string fjjj_discount_rate = 15;//FJJJ根据最新价报单的折溢价比例授权
 }
 
 //自定义快捷键
@@ -197,7 +200,9 @@ message KeyQueryReq
 //获取交易快捷键信息应答 包体为空 cmd_id: CMD_QUERY_KEY_RESP
 message KeyQueryResp
 {
-    repeated KeyInfo key_list = 1; 
+    required int32 ret_code = 1;  //0表示返回操作成功
+    optional string msg = 2;      //当返回有错误的时候，填充错误信息   
+    repeated KeyInfo key_list = 3; 
 }
 
 //设置交易快捷键请求 包体为空 cmd_id: CMD_SET_KEY_REQ
@@ -229,7 +234,7 @@ message RiskClientReq
 message RiskClientResp
 {
     required int32 ret_code = 1;  //0表示返回成功
-    required UserInfo user_info = 2;  // 返回信息
+    optional UserInfo user_info = 2;  // 返回信息
     optional string msg = 3;      //当返回有错误的时候，填充错误信息  
 }
 
@@ -238,6 +243,7 @@ message UserInfo
 {
     required string trader_id = 1;        //用户ID
     required bool is_manager = 2;     //是否是基金经理
-    required bool is_privilege =3;     //是否已经授权 
+    repeated verify_product_info product_list = 3; //基金经理独立风控授权的产品列表 
+    required bool is_privilege = 4;     //是否已经授权 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
