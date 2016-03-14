@@ -8,12 +8,13 @@ import uuid
 from common.constant import OrderStatus
 from pb import base_pb2, error_pb2
 from common import pack_stock_pb
+from common import constant
 
 
 class TransactionBase(object):
     __slots__ = ('trans', 'request_id', 'batch_no', 'order_no', 'code', 'price', 'qty', 'market', 'cancel_qty',
                  'match_qty', 'finished', 'policy_id', 'bs_flag', 'trader_id', 'trader_ip', 'status', 'match_nos',
-                 'robot', 'knocks', 'match_amount')
+                 'robot', 'knocks', 'match_amount', 'estimated_amount')
 
     def __init__(self, trans, code, price, qty, **kwargs):
         self.trans = trans
@@ -31,7 +32,8 @@ class TransactionBase(object):
         self.market = None
         self.cancel_qty = 0
         self.match_qty = 0
-        self.match_amount = 0
+        self.match_amount = 0.0
+        self.estimated_amount = 0.0
 
         self.finished = False
 
@@ -42,9 +44,13 @@ class TransactionBase(object):
 
         self.status = OrderStatus.CREATE
         self.get_market_and_price()
+        self.get_estimated_amt()
         # 组合id，是否有组合
         self.knocks = []
         self.match_nos = []
+
+    def get_estimated_amt(self):
+        self.estimated_amount += self.qty * self.price
 
     def get_market_and_price(self):
         """获取市场和价格"""
@@ -59,9 +65,9 @@ class TransactionBase(object):
             print 'stock code is lst not exist in quota'
             self.finish(OrderStatus.FAILED)
             return
-        if self.bs_flag != base_pb2.OPR_BUY or self.bs_flag != base_pb2.OPR_SELL:
+        if self.bs_flag != base_pb2.OPR_BUY and self.bs_flag != base_pb2.OPR_SELL:
             return
-        if self.price in base_pb2.policy_type.values():
+        if self.price in base_pb2.price_level.values():
             price_level = self.price
             self.price = lst[1].price(price_level, base_pb2.OPR_BUY)
 
@@ -74,9 +80,13 @@ class TransactionBase(object):
         """订单提交失败"""
         self.finish(OrderStatus.FAILED)
 
-    def canceling(self):
-        """撤单中"""
-        self.status = OrderStatus.CANCELING
+    def cancel(self):
+        """撤单操作，防止重复撤单"""
+        if self.finished is True:
+            return
+        if 30 > self.status > 0:
+            self.status = OrderStatus.CANCELING
+            self.execute(action=constant.ACTION_TYPE_CANCEL)
 
     def canceled(self):
         """撤单结束"""
@@ -90,16 +100,23 @@ class TransactionBase(object):
         """
         返回值True:表示该条knock被处理了， False表示该条Knock被忽略，用此去确认policy的相关回调不被掉错或多次调用
         """
-        if knock.match_no not in self.match_nos:
-            self.knocks.append(knock)
-            self.match_nos.append(knock.match_no)
+        # print 'knock: %s' % knock
+        if knock.match_no in self.match_nos:
+            print 'pass repeat knock'
+            return
+        self.knocks.append(knock)
+        self.match_nos.append(knock.match_no)
+        # 判断成交类型
+        if constant.MATCH_TYPE_NORMAL is knock.match_type:
             self.match_qty += knock.match_volume
             self.match_amount += knock.match_amount
             print 'curr match qty: [%s]' % self.match_qty
-            if self.qty == self.cancel_qty + self.match_qty:
-                self.finish()
-        else:
-            print 'pass repeat knock'
+        if constant.MATCH_TYPE_WITHDRAWS is knock.match_type:
+            self.cancel_qty += knock.match_volume
+            print 'curr cancel qty: [%s]' % self.cancel_qty
+        if self.qty == self.cancel_qty + self.match_qty:
+            self.finish()
+            pass
 
     def finish(self, status=OrderStatus.FINISH):
         """"""
@@ -107,7 +124,7 @@ class TransactionBase(object):
         self.status = status
         print 'order [%s] in policy [%s] finish, curr order status [%s]' % (self.order_no, self.policy_id, self.status)
 
-    def execute(self):
+    def execute(self, action=constant.ACTION_TYPE_NORMAL):
         """When you execute policy immidiately, you write you code here and call it"""
         pass
 
@@ -117,18 +134,28 @@ class TransactionBuy(TransactionBase):
         self.bs_flag = base_pb2.OPR_BUY
         super(TransactionBuy, self).__init__(trans, code, price, qty, **kwargs)
 
-    def execute(self):
+    def execute(self, action=constant.ACTION_TYPE_NORMAL):
         if self.finished is True:
             print 'policy %s order[%s] is finished, do not execute order' % (self.policy_id, self.request_id)
             return
         if self.trans.finished is True:
             print 'policy [%s] is finished, do not execute order %s' % (self.policy_id, self.request_id)
             return
-        # 组包，发送
-        order = pack_stock_pb.pack_single_order(self.code, self.price, self.qty, self.bs_flag, self.market,
-                                                self.policy_id, self.trader_id, self.trader_ip)
-        self.robot.riskmgt.make_and_send_rid(base_pb2.CMD_SINGLE_ORDER_REQ, self.request_id, order)
-        return True
+        if constant.ACTION_TYPE_NORMAL is action:
+            # 组包，发送
+            order = pack_stock_pb.pack_single_order(self.code, self.price, self.qty, self.bs_flag, self.market,
+                                                    self.policy_id, self.trader_id, self.trader_ip)
+            print '**********************pb**************************'
+            print order
+            print '************************************************'
+            self.robot.riskmgt.make_and_send_rid(base_pb2.CMD_SINGLE_ORDER_REQ, self.request_id, order)
+            return True
+        if constant.ACTION_TYPE_CANCEL is action:
+            order = pack_stock_pb.pack_single_cancel(self.order_no, self.market, self.policy_id, self.trader_id,
+                                                     self.trader_ip)
+            print '**********************pb**************************'
+            print order
+            print '************************************************'
 
 
 class TransactionSale(TransactionBuy):
@@ -139,7 +166,6 @@ class TransactionSale(TransactionBuy):
 
 class TransactionPurchase(TransactionBuy):
     """申购"""
-
     def __init__(self, trans, code, price, qty, **kwargs):
         self.bs_flag = base_pb2.OPR_PURCHASE
         super(TransactionPurchase, self).__init__(trans, code, price, qty, **kwargs)
@@ -147,7 +173,6 @@ class TransactionPurchase(TransactionBuy):
 
 class TransactionRedeem(TransactionBuy):
     """赎回"""
-
     def __init__(self, trans, code, price, qty, **kwargs):
         self.bs_flag = base_pb2.OPR_REDEEM
         super(TransactionRedeem, self).__init__(trans, code, price, qty, **kwargs)

@@ -21,7 +21,7 @@ import stock_trade_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='ot.proto',
   package='ly.ot',
-  serialized_pb=_b('\n\x08ot.proto\x12\x05ly.ot\x1a\nbase.proto\x1a\x11stock_trade.proto\"w\n\x0f\x42\x61sketPolicyReq\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x18\n\x02pl\x18\x02 \x02(\x0e\x32\x0c.price_level\x12\x0b\n\x03qty\x18\x03 \x02(\r\x12\x1c\n\x03opr\x18\x04 \x02(\x0e\x32\x0f.operation_type\x12\x11\n\tpolicy_id\x18\x05 \x01(\x0c\">\n\x0f\x42\x61sketCustomReq\x12+\n\x06stocks\x18\x01 \x03(\x0b\x32\x1b.stock_trade.SingleOrderReq\"\x98\x01\n\x10\x42\x61sketPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\x0c\x12\x0c\n\x04rate\x18\x03 \x01(\x02\x12\x11\n\tksh_count\x18\x04 \x01(\x05\x12\x0f\n\x07yg_cost\x18\x05 \x01(\x01\x12\x16\n\x0e\x66inished_asset\x18\x06 \x01(\x01\x12\x15\n\rfinished_iopv\x18\x07 \x01(\x01\"(\n\x13\x42\x61sketWithdrawalReq\x12\x11\n\tpolicy_id\x18\x01 \x02(\t\";\n\x14\x42\x61sketWithdrawalResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\t\"w\n\nBasketInfo\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0e\n\x06volume\x18\x02 \x02(\x05\x12\x1c\n\x03opr\x18\x03 \x02(\x0e\x32\x0f.operation_type\x12\r\n\x05money\x18\x04 \x02(\x02\x12\x0c\n\x04rate\x18\x05 \x02(\x02\x12\x10\n\x08policyid\x18\x06 \x02(\x03\"L\n\x14\x42\x61sketUnfinishedResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\"\n\x07\x62\x61skets\x18\x02 \x03(\x0b\x32\x11.ly.ot.BasketInfo\"\xc5\x01\n\x0eGradingFundReq\x12\x1c\n\x03opr\x18\x01 \x02(\x0e\x32\x0f.operation_type\x12\x0e\n\x06\x63ode_a\x18\x02 \x02(\t\x12\x0e\n\x06\x63ode_b\x18\x03 \x02(\t\x12\x0e\n\x06\x63ode_m\x18\x04 \x02(\t\x12\r\n\x05qty_m\x18\x05 \x02(\x03\x12\x0e\n\x06rate_a\x18\x06 \x02(\x05\x12\x0e\n\x06rate_b\x18\x07 \x02(\x05\x12\x18\n\x02pl\x18\x08 \x01(\x0e\x32\x0c.price_level\x12\x1c\n\x07linkage\x18\t \x01(\x0e\x32\x0b.linkage_ab\"1\n\nPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\t\"*\n\rEtfInfoSubReq\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0b\n\x03sub\x18\x02 \x01(\x05\"0\n\x0e\x45tfInfoSubResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\",\n\x0f\x43ustomBasisInfo\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x0b\n\x03qty\x18\x02 \x02(\x03\"H\n\x11\x43ustomBasisSubReq\x12&\n\x06stocks\x18\x01 \x03(\x0b\x32\x16.ly.ot.CustomBasisInfo\x12\x0b\n\x03sub\x18\x02 \x01(\x05\"/\n\x10\x45tfInfoUpdateReq\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\r\n\x05value\x18\x02 \x01(\x01\"9\n\x05\x45rror\x12\x12\n\ntime_stamp\x18\x01 \x01(\x04\x12\x0c\n\x04\x63ode\x18\x02 \x02(\r\x12\x0e\n\x06reason\x18\x03 \x01(\t\"4\n\nStopPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x13\n\x0b\x63\x61ncel_flag\x18\x02 \x02(\x08\" \n\x0bPausePolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\"\xa3\x01\n\rReorderPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x15\n\x0bprice_level\x18\x02 \x01(\rH\x00\x12\x0f\n\x05price\x18\x03 \x01(\x03H\x00\x12\x14\n\x0creorder_step\x18\x04 \x01(\x05\x12\x18\n\x10reorder_interval\x18\x05 \x01(\r\x12\x19\n\x11reorder_max_times\x18\x06 \x01(\rB\x0c\n\nprice_type\":\n\x11ReplaceFillPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x12\n\nopen_codes\x18\x02 \x03(\t\"9\n\x16SubscribePolicyRequest\x12\x11\n\tpolicy_id\x18\x01 \x01(\x0c\x12\x0c\n\x04type\x18\x02 \x01(\r\"7\n\x17SubscribePolicyResponse\x12\x1c\n\x06result\x18\x01 \x02(\x0b\x32\x0c.ly.ot.Error\"\x9e\x01\n\tParameter\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x14\n\x0cvalue_string\x18\x02 \x01(\t\x12\x14\n\x0cvalue_double\x18\x03 \x01(\x01\x12\x15\n\rvalue_uint_32\x18\x04 \x01(\x07\x12\x14\n\x0cvalue_int_32\x18\x05 \x01(\x0f\x12\x15\n\rvalue_uint_64\x18\x06 \x01(\x06\x12\x14\n\x0cvalue_int_64\x18\x07 \x01(\x10\"\xc7\x03\n\x0cPolicyStatus\x12\x11\n\tpolicy_id\x18\x01 \x01(\x0c\x12\x1a\n\x04type\x18\x02 \x01(\x0e\x32\x0c.policy_type\x12\x12\n\ntime_stamp\x18\x03 \x02(\x04\x12\x19\n\x03\x65rr\x18\x04 \x01(\x0b\x32\x0c.ly.ot.Error\x12\x0e\n\x06status\x18\x05 \x02(\t\x12\x11\n\tstatus_id\x18\x06 \x02(\r\x12\x12\n\npercentage\x18\x07 \x01(\x01\x12\x12\n\nstart_time\x18\x08 \x01(\x04\x12\x10\n\x08\x65nd_time\x18\t \x01(\x04\x12\x12\n\nb_s_amount\x18\n \x01(\x04\x12\x12\n\ns_s_amount\x18\x0b \x01(\x04\x12\x12\n\nb_f_amount\x18\x0c \x01(\x04\x12\x12\n\ns_f_amount\x18\r \x01(\x04\x12\x14\n\x0cmatch_volume\x18\x0e \x01(\x04\x12$\n\nparameters\x18\x0f \x03(\x0b\x32\x10.ly.ot.Parameter\x12\x12\n\nlogic_type\x18\x10 \x01(\t\x12\x10\n\x08robot_ip\x18\x11 \x02(\t\x12\x11\n\ttrader_id\x18\x12 \x01(\t\x12\x11\n\ttrader_ip\x18\x13 \x01(\t\x12$\n\tdirection\x18\x14 \x01(\x0e\x32\x11.policy_direction\"q\n\x0fPolicyBaseParam\x12$\n\tdirection\x18\x01 \x02(\x0e\x32\x11.policy_direction\x12\x11\n\ttrader_id\x18\x02 \x02(\t\x12\x11\n\ttrader_ip\x18\x03 \x02(\t\x12\x12\n\nlogic_type\x18\x04 \x01(\t\"\xa7\x01\n\x0bStockPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x15\n\x0bprice_level\x18\x04 \x01(\rH\x00\x12\x0f\n\x05price\x18\x05 \x01(\x03H\x00\x12\x18\n\x10reorder_interval\x18\x06 \x01(\rB\x0c\n\nprice_type\"\xf2\x02\n\x0c\x46uturePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x15\n\x0bprice_level\x18\x04 \x01(\rH\x00\x12\x0f\n\x05price\x18\x05 \x01(\x03H\x00\x12\x17\n\x0fopen_close_flag\x18\x06 \x02(\r\x12\x36\n\rreorder_param\x18\x07 \x01(\x0b\x32\x1f.ly.ot.FuturePolicy.ReoderParam\x1a\x90\x01\n\x0bReoderParam\x12\x1e\n\x10reorder_interval\x18\x01 \x01(\r:\x04\x31\x30\x30\x30\x12\x19\n\x11reorder_max_times\x18\x02 \x01(\r\x12\x1d\n\x13reorder_price_level\x18\x03 \x01(\rH\x00\x12\x16\n\x0creorder_step\x18\x04 \x01(\x05H\x00\x42\x0f\n\rreorder_setupB\x0c\n\nprice_type\"F\n\x10\x43ustomBasketItem\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x14\n\x0creplace_flag\x18\x02 \x02(\r\x12\x0e\n\x06volume\x18\x03 \x02(\r\"\xdd\x01\n\x11StockBasketPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x15\n\x0bprice_level\x18\x04 \x01(\rH\x00\x12\x15\n\x0bprice_ratio\x18\x05 \x01(\x05H\x00\x12-\n\x0c\x63ustom_items\x18\x06 \x03(\x0b\x32\x17.ly.ot.CustomBasketItem\x12\x13\n\x0b\x65xpert_mode\x18\x07 \x02(\x08\x42\x0c\n\nprice_type\"e\n\x19StockCreateOrRedeemPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\"\x9d\x01\n\x0f\x45TFBCOrRSPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\x05\x12\x16\n\x0e\x64\x65layed_single\x18\x05 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x06 \x02(\r\"\xab\x01\n\x0e\x45TFQuickPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\r\n\x05price\x18\x04 \x02(\x03\x12\x13\n\x0bprice_ratio\x18\x05 \x02(\x05\x12\x16\n\x0e\x64\x65layed_single\x18\x06 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x07 \x02(\r\"\xd9\x02\n\x17\x45TFSpreadPositivePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\x05\x12\x16\n\x0e\x64\x65layed_single\x18\x05 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x06 \x02(\r\x12\x13\n\x0b\x66uture_code\x18\x07 \x02(\t\x12\x1e\n\x16\x66uture_start_threshold\x18\x08 \x02(\x01\x12\x1d\n\x15\x66uture_lock_threshold\x18\t \x02(\x01\x12\x1b\n\x13\x66uture_reorder_step\x18\n \x02(\x05\x12\x1f\n\x17\x66uture_reorder_interval\x18\x0b \x02(\r\x12 \n\x18\x66uture_reorder_max_times\x18\x0c \x02(\r\"\xc6\x01\n\x18StructuredFundLinkPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0e\n\x06\x63ode_a\x18\x02 \x02(\t\x12\x0e\n\x06\x63ode_b\x18\x03 \x02(\t\x12\x10\n\x08volume_a\x18\x04 \x02(\r\x12\x10\n\x08volume_b\x18\x05 \x02(\r\x12\r\n\x05price\x18\x06 \x02(\x03\x12\x13\n\x0bprice_level\x18\x07 \x02(\r\x12\x16\n\x0elink_direction\x18\x08 \x02(\r\"w\n\x16StructuredFundABPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\x05\"l\n StructuredFundSplitOrMergePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\"{\n\x1aStructuredFundBMOrSSPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\x05\"\xac\x01\n\x19StructuredFundQuickPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\x05\x12\x16\n\x0e\x61\x62_price_ratio\x18\x05 \x02(\x05\x12\x18\n\x10quick_split_flag\x18\x06 \x01(\r*\"\n\not_version\x12\t\n\x05MAJOR\x10\x00\x12\t\n\x05MINOR\x10\x01*\xef\x02\n\nPriceLevel\x12\x13\n\x0fkPriceLevelNone\x10\x00\x12\x13\n\x0fkPriceLevelSell\x10\x01\x12\x12\n\x0ekPriceLevelBuy\x10\x02\x12\x13\n\x0fkPriceLevelLast\x10\x03\x12\x18\n\x14kPriceLevelHighLimit\x10\x04\x12\x17\n\x13kPriceLevelLowLimit\x10\x05\x12\x13\n\x0fkPriceLevelOpen\x10\x06\x12\x13\n\x0fkPriceLevelHigh\x10\x07\x12\x12\n\x0ekPriceLevelLow\x10\x08\x12\x14\n\x10kPriceLevelClose\x10\t\x12\x17\n\x13kPriceLevelPreClose\x10\n\x12\x15\n\x11kPriceLevelSettle\x10\x0b\x12\x18\n\x14kPriceLevelPreSettle\x10\x0c\x12\x1d\n\x19kPriceLevelWeightedAvgBuy\x10\r\x12\x1e\n\x1akPriceLevelWeightedAvgSell\x10\x0e')
+  serialized_pb=_b('\n\x08ot.proto\x12\x05ly.ot\x1a\nbase.proto\x1a\x11stock_trade.proto\"w\n\x0f\x42\x61sketPolicyReq\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x18\n\x02pl\x18\x02 \x02(\x0e\x32\x0c.price_level\x12\x0b\n\x03qty\x18\x03 \x02(\r\x12\x1c\n\x03opr\x18\x04 \x02(\x0e\x32\x0f.operation_type\x12\x11\n\tpolicy_id\x18\x05 \x01(\x0c\">\n\x0f\x42\x61sketCustomReq\x12+\n\x06stocks\x18\x01 \x03(\x0b\x32\x1b.stock_trade.SingleOrderReq\"\x98\x01\n\x10\x42\x61sketPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\x0c\x12\x0c\n\x04rate\x18\x03 \x01(\x02\x12\x11\n\tksh_count\x18\x04 \x01(\x05\x12\x0f\n\x07yg_cost\x18\x05 \x01(\x01\x12\x16\n\x0e\x66inished_asset\x18\x06 \x01(\x01\x12\x15\n\rfinished_iopv\x18\x07 \x01(\x01\"(\n\x13\x42\x61sketWithdrawalReq\x12\x11\n\tpolicy_id\x18\x01 \x02(\t\";\n\x14\x42\x61sketWithdrawalResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\t\"w\n\nBasketInfo\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0e\n\x06volume\x18\x02 \x02(\x05\x12\x1c\n\x03opr\x18\x03 \x02(\x0e\x32\x0f.operation_type\x12\r\n\x05money\x18\x04 \x02(\x02\x12\x0c\n\x04rate\x18\x05 \x02(\x02\x12\x10\n\x08policyid\x18\x06 \x02(\x03\"L\n\x14\x42\x61sketUnfinishedResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\"\n\x07\x62\x61skets\x18\x02 \x03(\x0b\x32\x11.ly.ot.BasketInfo\"\xc5\x01\n\x0eGradingFundReq\x12\x1c\n\x03opr\x18\x01 \x02(\x0e\x32\x0f.operation_type\x12\x0e\n\x06\x63ode_a\x18\x02 \x02(\t\x12\x0e\n\x06\x63ode_b\x18\x03 \x02(\t\x12\x0e\n\x06\x63ode_m\x18\x04 \x02(\t\x12\r\n\x05qty_m\x18\x05 \x02(\x03\x12\x0e\n\x06rate_a\x18\x06 \x02(\x05\x12\x0e\n\x06rate_b\x18\x07 \x02(\x05\x12\x18\n\x02pl\x18\x08 \x01(\x0e\x32\x0c.price_level\x12\x1c\n\x07linkage\x18\t \x01(\x0e\x32\x0b.linkage_ab\"1\n\nPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x11\n\tpolicy_id\x18\x02 \x01(\t\"*\n\rEtfInfoSubReq\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0b\n\x03sub\x18\x02 \x01(\x05\"0\n\x0e\x45tfInfoSubResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\",\n\x0f\x43ustomBasisInfo\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x0b\n\x03qty\x18\x02 \x02(\x03\"H\n\x11\x43ustomBasisSubReq\x12&\n\x06stocks\x18\x01 \x03(\x0b\x32\x16.ly.ot.CustomBasisInfo\x12\x0b\n\x03sub\x18\x02 \x01(\x05\"/\n\x10\x45tfInfoUpdateReq\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\r\n\x05value\x18\x02 \x01(\x01\"9\n\x05\x45rror\x12\x12\n\ntime_stamp\x18\x01 \x01(\x04\x12\x0c\n\x04\x63ode\x18\x02 \x02(\r\x12\x0e\n\x06reason\x18\x03 \x01(\t\"4\n\nStopPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x13\n\x0b\x63\x61ncel_flag\x18\x02 \x02(\x08\" \n\x0bPausePolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\"\xa3\x01\n\rReorderPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x15\n\x0bprice_level\x18\x02 \x01(\rH\x00\x12\x0f\n\x05price\x18\x03 \x01(\x03H\x00\x12\x14\n\x0creorder_step\x18\x04 \x01(\x05\x12\x18\n\x10reorder_interval\x18\x05 \x01(\r\x12\x19\n\x11reorder_max_times\x18\x06 \x01(\rB\x0c\n\nprice_type\":\n\x11ReplaceFillPolicy\x12\x11\n\tpolicy_id\x18\x01 \x02(\x0c\x12\x12\n\nopen_codes\x18\x02 \x03(\t\"9\n\x16SubscribePolicyRequest\x12\x11\n\tpolicy_id\x18\x01 \x01(\x0c\x12\x0c\n\x04type\x18\x02 \x01(\r\"7\n\x17SubscribePolicyResponse\x12\x1c\n\x06result\x18\x01 \x02(\x0b\x32\x0c.ly.ot.Error\"\x9e\x01\n\tParameter\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x14\n\x0cvalue_string\x18\x02 \x01(\t\x12\x14\n\x0cvalue_double\x18\x03 \x01(\x01\x12\x15\n\rvalue_uint_32\x18\x04 \x01(\x07\x12\x14\n\x0cvalue_int_32\x18\x05 \x01(\x0f\x12\x15\n\rvalue_uint_64\x18\x06 \x01(\x06\x12\x14\n\x0cvalue_int_64\x18\x07 \x01(\x10\"\xc7\x03\n\x0cPolicyStatus\x12\x11\n\tpolicy_id\x18\x01 \x01(\x0c\x12\x1a\n\x04type\x18\x02 \x01(\x0e\x32\x0c.policy_type\x12\x12\n\ntime_stamp\x18\x03 \x02(\x04\x12\x19\n\x03\x65rr\x18\x04 \x01(\x0b\x32\x0c.ly.ot.Error\x12\x0e\n\x06status\x18\x05 \x02(\t\x12\x11\n\tstatus_id\x18\x06 \x02(\r\x12\x12\n\npercentage\x18\x07 \x01(\x01\x12\x12\n\nstart_time\x18\x08 \x01(\x04\x12\x10\n\x08\x65nd_time\x18\t \x01(\x04\x12\x12\n\nb_s_amount\x18\n \x01(\x04\x12\x12\n\ns_s_amount\x18\x0b \x01(\x04\x12\x12\n\nb_f_amount\x18\x0c \x01(\x04\x12\x12\n\ns_f_amount\x18\r \x01(\x04\x12\x14\n\x0cmatch_volume\x18\x0e \x01(\x04\x12$\n\nparameters\x18\x0f \x03(\x0b\x32\x10.ly.ot.Parameter\x12\x12\n\nlogic_type\x18\x10 \x01(\t\x12\x10\n\x08robot_ip\x18\x11 \x02(\t\x12\x11\n\ttrader_id\x18\x12 \x01(\t\x12\x11\n\ttrader_ip\x18\x13 \x01(\t\x12$\n\tdirection\x18\x14 \x01(\x0e\x32\x11.policy_direction\"q\n\x0fPolicyBaseParam\x12$\n\tdirection\x18\x01 \x02(\x0e\x32\x11.policy_direction\x12\x11\n\ttrader_id\x18\x02 \x02(\t\x12\x11\n\ttrader_ip\x18\x03 \x02(\t\x12\x12\n\nlogic_type\x18\x04 \x01(\t\"\xbc\x01\n\x0bStockPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x15\n\x0bprice_level\x18\x04 \x01(\rH\x00\x12\x0f\n\x05price\x18\x05 \x01(\x03H\x00\x12\x13\n\x0bprice_ratio\x18\x06 \x01(\r\x12\x18\n\x10reorder_interval\x18\x07 \x01(\rB\x0c\n\nprice_type\"\x81\x03\n\x0c\x46uturePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x15\n\x0bprice_level\x18\x04 \x01(\rH\x00\x12\x0f\n\x05price\x18\x05 \x01(\x03H\x00\x12\x13\n\x0bprice_ratio\x18\x06 \x01(\r\x12\x17\n\x0fopen_close_flag\x18\x07 \x02(\r\x12\x36\n\rreorder_param\x18\x08 \x01(\x0b\x32\x1f.ly.ot.FuturePolicy.ReoderParam\x1a\x8a\x01\n\x0bReoderParam\x12\x18\n\x10reorder_interval\x18\x01 \x01(\r\x12\x19\n\x11reorder_max_times\x18\x02 \x01(\r\x12\x1d\n\x13reorder_price_level\x18\x03 \x01(\rH\x00\x12\x16\n\x0creorder_step\x18\x04 \x01(\x05H\x00\x42\x0f\n\rreorder_setupB\x0c\n\nprice_type\"F\n\x10\x43ustomBasketItem\x12\x0c\n\x04\x63ode\x18\x01 \x02(\t\x12\x14\n\x0creplace_flag\x18\x02 \x02(\r\x12\x0e\n\x06volume\x18\x03 \x02(\r\"\xcb\x01\n\x11StockBasketPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_level\x18\x04 \x01(\r\x12\x13\n\x0bprice_ratio\x18\x05 \x01(\r\x12-\n\x0c\x63ustom_items\x18\x06 \x03(\x0b\x32\x17.ly.ot.CustomBasketItem\x12\x13\n\x0b\x65xpert_mode\x18\x07 \x02(\x08\"e\n\x19StockCreateOrRedeemPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\"\x9d\x01\n\x0f\x45TFBCOrRSPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\r\x12\x16\n\x0e\x64\x65layed_single\x18\x05 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x06 \x02(\r\"\xab\x01\n\x0e\x45TFQuickPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\r\n\x05price\x18\x04 \x02(\x03\x12\x13\n\x0bprice_ratio\x18\x05 \x02(\r\x12\x16\n\x0e\x64\x65layed_single\x18\x06 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x07 \x02(\r\"\xd9\x02\n\x17\x45TFSpreadPositivePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\r\x12\x16\n\x0e\x64\x65layed_single\x18\x05 \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x06 \x02(\r\x12\x13\n\x0b\x66uture_code\x18\x07 \x02(\t\x12\x1e\n\x16\x66uture_start_threshold\x18\x08 \x02(\x01\x12\x1d\n\x15\x66uture_lock_threshold\x18\t \x02(\x01\x12\x1b\n\x13\x66uture_reorder_step\x18\n \x02(\x05\x12\x1f\n\x17\x66uture_reorder_interval\x18\x0b \x02(\r\x12 \n\x18\x66uture_reorder_max_times\x18\x0c \x02(\r\"\xc6\x01\n\x18StructuredFundLinkPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0e\n\x06\x63ode_a\x18\x02 \x02(\t\x12\x0e\n\x06\x63ode_b\x18\x03 \x02(\t\x12\x10\n\x08volume_a\x18\x04 \x02(\r\x12\x10\n\x08volume_b\x18\x05 \x02(\r\x12\r\n\x05price\x18\x06 \x02(\x03\x12\x13\n\x0bprice_level\x18\x07 \x02(\r\x12\x16\n\x0elink_direction\x18\x08 \x02(\r\"w\n\x16StructuredFundABPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\r\"l\n StructuredFundSplitOrMergePolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\"{\n\x1aStructuredFundBMOrSSPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\r\"\xac\x01\n\x19StructuredFundQuickPolicy\x12*\n\nbase_param\x18\x01 \x02(\x0b\x32\x16.ly.ot.PolicyBaseParam\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x0e\n\x06volume\x18\x03 \x02(\r\x12\x13\n\x0bprice_ratio\x18\x04 \x02(\r\x12\x16\n\x0e\x61\x62_price_ratio\x18\x05 \x02(\r\x12\x18\n\x10quick_split_flag\x18\x06 \x01(\r*\"\n\not_version\x12\t\n\x05MAJOR\x10\x00\x12\t\n\x05MINOR\x10\x01*\xef\x02\n\nPriceLevel\x12\x13\n\x0fkPriceLevelNone\x10\x00\x12\x13\n\x0fkPriceLevelSell\x10\x01\x12\x12\n\x0ekPriceLevelBuy\x10\x02\x12\x13\n\x0fkPriceLevelLast\x10\x03\x12\x18\n\x14kPriceLevelHighLimit\x10\x04\x12\x17\n\x13kPriceLevelLowLimit\x10\x05\x12\x13\n\x0fkPriceLevelOpen\x10\x06\x12\x13\n\x0fkPriceLevelHigh\x10\x07\x12\x12\n\x0ekPriceLevelLow\x10\x08\x12\x14\n\x10kPriceLevelClose\x10\t\x12\x17\n\x13kPriceLevelPreClose\x10\n\x12\x15\n\x11kPriceLevelSettle\x10\x0b\x12\x18\n\x14kPriceLevelPreSettle\x10\x0c\x12\x1d\n\x19kPriceLevelWeightedAvgBuy\x10\r\x12\x1e\n\x1akPriceLevelWeightedAvgSell\x10\x0e')
   ,
   dependencies=[base_pb2.DESCRIPTOR,stock_trade_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -43,8 +43,8 @@ _OT_VERSION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=4785,
-  serialized_end=4819,
+  serialized_start=4803,
+  serialized_end=4837,
 )
 _sym_db.RegisterEnumDescriptor(_OT_VERSION)
 
@@ -118,8 +118,8 @@ _PRICELEVEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=4822,
-  serialized_end=5189,
+  serialized_start=4840,
+  serialized_end=5207,
 )
 _sym_db.RegisterEnumDescriptor(_PRICELEVEL)
 
@@ -1393,8 +1393,15 @@ _STOCKPOLICY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reorder_interval', full_name='ly.ot.StockPolicy.reorder_interval', index=5,
+      name='price_ratio', full_name='ly.ot.StockPolicy.price_ratio', index=5,
       number=6, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='reorder_interval', full_name='ly.ot.StockPolicy.reorder_interval', index=6,
+      number=7, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1414,7 +1421,7 @@ _STOCKPOLICY = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=2430,
-  serialized_end=2597,
+  serialized_end=2618,
 )
 
 
@@ -1428,7 +1435,7 @@ _FUTUREPOLICY_REODERPARAM = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='reorder_interval', full_name='ly.ot.FuturePolicy.ReoderParam.reorder_interval', index=0,
       number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1000,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -1467,8 +1474,8 @@ _FUTUREPOLICY_REODERPARAM = _descriptor.Descriptor(
       name='reorder_setup', full_name='ly.ot.FuturePolicy.ReoderParam.reorder_setup',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2812,
-  serialized_end=2956,
+  serialized_start=2854,
+  serialized_end=2992,
 )
 
 _FUTUREPOLICY = _descriptor.Descriptor(
@@ -1514,15 +1521,22 @@ _FUTUREPOLICY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='open_close_flag', full_name='ly.ot.FuturePolicy.open_close_flag', index=5,
-      number=6, type=13, cpp_type=3, label=2,
+      name='price_ratio', full_name='ly.ot.FuturePolicy.price_ratio', index=5,
+      number=6, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reorder_param', full_name='ly.ot.FuturePolicy.reorder_param', index=6,
-      number=7, type=11, cpp_type=10, label=1,
+      name='open_close_flag', full_name='ly.ot.FuturePolicy.open_close_flag', index=6,
+      number=7, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='reorder_param', full_name='ly.ot.FuturePolicy.reorder_param', index=7,
+      number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1541,8 +1555,8 @@ _FUTUREPOLICY = _descriptor.Descriptor(
       name='price_type', full_name='ly.ot.FuturePolicy.price_type',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=2600,
-  serialized_end=2970,
+  serialized_start=2621,
+  serialized_end=3006,
 )
 
 
@@ -1585,8 +1599,8 @@ _CUSTOMBASKETITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2972,
-  serialized_end=3042,
+  serialized_start=3008,
+  serialized_end=3078,
 )
 
 
@@ -1627,7 +1641,7 @@ _STOCKBASKETPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.StockBasketPolicy.price_ratio', index=4,
-      number=5, type=5, cpp_type=1, label=1,
+      number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1656,12 +1670,9 @@ _STOCKBASKETPOLICY = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   oneofs=[
-    _descriptor.OneofDescriptor(
-      name='price_type', full_name='ly.ot.StockBasketPolicy.price_type',
-      index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=3045,
-  serialized_end=3266,
+  serialized_start=3081,
+  serialized_end=3284,
 )
 
 
@@ -1704,8 +1715,8 @@ _STOCKCREATEORREDEEMPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3268,
-  serialized_end=3369,
+  serialized_start=3286,
+  serialized_end=3387,
 )
 
 
@@ -1739,7 +1750,7 @@ _ETFBCORRSPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.ETFBCOrRSPolicy.price_ratio', index=3,
-      number=4, type=5, cpp_type=1, label=2,
+      number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1769,8 +1780,8 @@ _ETFBCORRSPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3372,
-  serialized_end=3529,
+  serialized_start=3390,
+  serialized_end=3547,
 )
 
 
@@ -1811,7 +1822,7 @@ _ETFQUICKPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.ETFQuickPolicy.price_ratio', index=4,
-      number=5, type=5, cpp_type=1, label=2,
+      number=5, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1841,8 +1852,8 @@ _ETFQUICKPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3532,
-  serialized_end=3703,
+  serialized_start=3550,
+  serialized_end=3721,
 )
 
 
@@ -1876,7 +1887,7 @@ _ETFSPREADPOSITIVEPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.ETFSpreadPositivePolicy.price_ratio', index=3,
-      number=4, type=5, cpp_type=1, label=2,
+      number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1948,8 +1959,8 @@ _ETFSPREADPOSITIVEPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3706,
-  serialized_end=4051,
+  serialized_start=3724,
+  serialized_end=4069,
 )
 
 
@@ -2027,8 +2038,8 @@ _STRUCTUREDFUNDLINKPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4054,
-  serialized_end=4252,
+  serialized_start=4072,
+  serialized_end=4270,
 )
 
 
@@ -2062,7 +2073,7 @@ _STRUCTUREDFUNDABPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.StructuredFundABPolicy.price_ratio', index=3,
-      number=4, type=5, cpp_type=1, label=2,
+      number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -2078,8 +2089,8 @@ _STRUCTUREDFUNDABPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4254,
-  serialized_end=4373,
+  serialized_start=4272,
+  serialized_end=4391,
 )
 
 
@@ -2122,8 +2133,8 @@ _STRUCTUREDFUNDSPLITORMERGEPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4375,
-  serialized_end=4483,
+  serialized_start=4393,
+  serialized_end=4501,
 )
 
 
@@ -2157,7 +2168,7 @@ _STRUCTUREDFUNDBMORSSPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.StructuredFundBMOrSSPolicy.price_ratio', index=3,
-      number=4, type=5, cpp_type=1, label=2,
+      number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -2173,8 +2184,8 @@ _STRUCTUREDFUNDBMORSSPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4485,
-  serialized_end=4608,
+  serialized_start=4503,
+  serialized_end=4626,
 )
 
 
@@ -2208,14 +2219,14 @@ _STRUCTUREDFUNDQUICKPOLICY = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='price_ratio', full_name='ly.ot.StructuredFundQuickPolicy.price_ratio', index=3,
-      number=4, type=5, cpp_type=1, label=2,
+      number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='ab_price_ratio', full_name='ly.ot.StructuredFundQuickPolicy.ab_price_ratio', index=4,
-      number=5, type=5, cpp_type=1, label=2,
+      number=5, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -2238,8 +2249,8 @@ _STRUCTUREDFUNDQUICKPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4611,
-  serialized_end=4783,
+  serialized_start=4629,
+  serialized_end=4801,
 )
 
 _BASKETPOLICYREQ.fields_by_name['pl'].enum_type = base_pb2._PRICE_LEVEL
@@ -2287,12 +2298,6 @@ _FUTUREPOLICY.oneofs_by_name['price_type'].fields.append(
 _FUTUREPOLICY.fields_by_name['price'].containing_oneof = _FUTUREPOLICY.oneofs_by_name['price_type']
 _STOCKBASKETPOLICY.fields_by_name['base_param'].message_type = _POLICYBASEPARAM
 _STOCKBASKETPOLICY.fields_by_name['custom_items'].message_type = _CUSTOMBASKETITEM
-_STOCKBASKETPOLICY.oneofs_by_name['price_type'].fields.append(
-  _STOCKBASKETPOLICY.fields_by_name['price_level'])
-_STOCKBASKETPOLICY.fields_by_name['price_level'].containing_oneof = _STOCKBASKETPOLICY.oneofs_by_name['price_type']
-_STOCKBASKETPOLICY.oneofs_by_name['price_type'].fields.append(
-  _STOCKBASKETPOLICY.fields_by_name['price_ratio'])
-_STOCKBASKETPOLICY.fields_by_name['price_ratio'].containing_oneof = _STOCKBASKETPOLICY.oneofs_by_name['price_type']
 _STOCKCREATEORREDEEMPOLICY.fields_by_name['base_param'].message_type = _POLICYBASEPARAM
 _ETFBCORRSPOLICY.fields_by_name['base_param'].message_type = _POLICYBASEPARAM
 _ETFQUICKPOLICY.fields_by_name['base_param'].message_type = _POLICYBASEPARAM

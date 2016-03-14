@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='error.proto',
   package='',
-  serialized_pb=_b('\n\x0b\x65rror.proto*\x9b\x02\n\x06status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x10\n\x0c\x45RROR_UPDATE\x10\x01\x12\x11\n\rERROR_RELOGIN\x10\x02\x12\x14\n\x10\x45RROR_DISCONNECT\x10\x03\x12\x0e\n\nERROR_WAIT\x10\x04\x12\x13\n\x0f\x45RROR_NOT_EXIST\x10\x05\x12\x1b\n\x17\x45RROR_RATE_OUT_OF_RANGE\x10\x06\x12\x17\n\x13\x45RROR_NO_WITHDRAWAL\x10\x07\x12\x19\n\x15\x45RROR_NOT_EXIST_STOCK\x10\x08\x12\x1a\n\x16\x45RROR_NOT_EXIST_FUTURE\x10\t\x12\x1a\n\x16\x45RROR_NOT_EXIST_POLICY\x10\n\x12\x1b\n\x17\x45RROR_NOT_BASKET_POLICY\x10\x0b')
+  serialized_pb=_b('\n\x0b\x65rror.proto*\xab\x01\n\x06status\x12\x0b\n\x07SUCCESS\x10\x00\x12\x10\n\x0c\x45RROR_UPDATE\x10\x01\x12\x11\n\rERROR_RELOGIN\x10\x02\x12\x14\n\x10\x45RROR_DISCONNECT\x10\x03\x12\x0e\n\nERROR_WAIT\x10\x04\x12\x13\n\x0f\x45RROR_NOT_EXIST\x10\x05\x12\x1b\n\x17\x45RROR_RATE_OUT_OF_RANGE\x10\x06\x12\x17\n\x13\x45RROR_NO_WITHDRAWAL\x10\x07')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -61,27 +61,11 @@ _STATUS = _descriptor.EnumDescriptor(
       name='ERROR_NO_WITHDRAWAL', index=7, number=7,
       options=None,
       type=None),
-    _descriptor.EnumValueDescriptor(
-      name='ERROR_NOT_EXIST_STOCK', index=8, number=8,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='ERROR_NOT_EXIST_FUTURE', index=9, number=9,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='ERROR_NOT_EXIST_POLICY', index=10, number=10,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='ERROR_NOT_BASKET_POLICY', index=11, number=11,
-      options=None,
-      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=16,
-  serialized_end=299,
+  serialized_end=187,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -94,10 +78,6 @@ ERROR_WAIT = 4
 ERROR_NOT_EXIST = 5
 ERROR_RATE_OUT_OF_RANGE = 6
 ERROR_NO_WITHDRAWAL = 7
-ERROR_NOT_EXIST_STOCK = 8
-ERROR_NOT_EXIST_FUTURE = 9
-ERROR_NOT_EXIST_POLICY = 10
-ERROR_NOT_BASKET_POLICY = 11
 
 
 DESCRIPTOR.enum_types_by_name['status'] = _STATUS

@@ -88,22 +88,28 @@ def mt_handle(sess, cmd, rid, body):
     if base_pb2.CMD_POLICY_STATUS == cmd:
         policy_status = ot_pb2.PolicyStatus()
         policy_status.ParseFromString(body)
-        print 'client receive robot policy_id: [%s] policy_status: [%s]' % (
-            policy_status.policy_id, policy_status.status)
+        pi = utils.package_info(cmd, rid, policy_status)
+        policy_status_resp_handle(sess, pi)
     if base_pb2.CMD_SINGLE_WITHDRAWAL_RESP == cmd:
         pass
     if base_pb2.CMD_ERROR_REQ == cmd:
         stock_err = stock_trade_pb2.ErrResp()
         stock_err.ParseFromString(body)
         print stock_err
-
+flag = 0
+def policy_status_resp_handle(sess, pi):
+    global flag
+    print 'client receive robot policy_id: [%s] policy_status: [%s]' % (pi.pack.policy_id, pi.pack.status)
+    if pi.pack.status is 'progressed' and flag == 0:
+        flag += 1
+        send_stop_policy(sess, base_pb2.CMD_STOP_POLICY, pi.pack.policy_id, True)
 
 def login_resp_handle(sess, pi):
     print pi.cmd, pi.rid, pi.pack
     print '-' * 40
     # 单笔买
-    # send_single_order(sess, code='502048', price_level=base_pb2.S_1, qty=1000000)
-    send_single_order(sess, code='502049', qty=1000000)
+    send_single_order(sess, code='502048', price_level=base_pb2.S_1, qty=1000)
+    # send_single_order(sess, code='502049', qty=200)
     # send_single_order(sess, code='502050', qty=1000000)
     # 单笔卖
     # send_single_order(sess=sess, code='510050', direction=base_pb2.POLICY_DIRECTION_NEGATIVE)
@@ -161,6 +167,14 @@ def login_resp_handle(sess, pi):
     # a+b卖
     # send_structured_fund_ab_policy(sess, base_pb2.CMD_STRUCTURED_FUND_AB_POLICY, base_pb2.POLICY_DIRECTION_NEGATIVE,
     #                                CODE, 10000, 2000)
+
+def send_stop_policy(sess, cmd, policy_id, cancel_flag=True):
+    policy = ot_pb2.StopPolicy()
+    policy.policy_id = policy_id
+    policy.cancel_flag = True
+    rid = uuid.uuid1()
+    snddata = utils.make_package(base_pb2.SYS_ROBOT, cmd, rid, policy)
+    sess.sock.send(snddata)
 
 
 def send_structured_fund_split_or_merge_policy(sess, cmd, direction, code, volume):

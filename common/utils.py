@@ -8,13 +8,13 @@ helper function
 
 # import sys
 import struct
+import time
+import uuid
 from gevent import socket
 import gevent
-import time
-from dao.datatype import package_info
 
-from pb import base_pb2
-from pb import error_pb2
+from dao.datatype import package_info
+from pb import base_pb2, error_pb2
 
 __author__ = 'qinjing'
 
@@ -43,13 +43,11 @@ def int2seq(s1, s2, s3, s4):
 
 
 # --------------------------------------------------------------------------
-def make_package(sysid, cmd, pi, pack):
-    fmt = ">iHHiiii"
-    head = struct.pack(fmt, pack.ByteSize(), sysid, cmd, pi.s1, pi.s2, pi.s3,
-                       pi.s4)
+def make_package(sysid, cmd, rid, pack):
+    fmt = ">iHH16s"
+    head = struct.pack(fmt, pack.ByteSize(), sysid, cmd, rid.get_bytes())
     snddata = head + pack.SerializeToString()
     return snddata
-
 
 # -----------------------------------------------------------------------------
 def make_package_num(sysid, cmd, s3, s4, pack):
@@ -69,14 +67,15 @@ def recv_header2(sock, size):
             print('except %s' % (e))
             break
         if not hpdata:
+            gevent.sleep(0)
             print 'no header'
             break
         header += hpdata
 
     if len(header) == size:
-        fmt = '>iHHiiii'
-        blen, sysid, cmd, s1, s2, s3, s4 = struct.unpack(fmt, header)
-        pi = package_info(cmd, s1, s2, s3, s4)
+        fmt = '>iHH16s'
+        blen, sysid, cmd, rid = struct.unpack(fmt, header)
+        pi = package_info(cmd, rid)
         return error_pb2.SUCCESS, blen, pi
     else:
         return error_pb2.ERROR_DISCONNECT, 0, None
@@ -93,11 +92,11 @@ def recv_header(sock, size):
         header += hpdata
 
     if len(header) == size:
-        fmt = '>iHHiiii'
-        blen, sysid, cmd, s1, s2, s3, s4 = struct.unpack(fmt, header)
-        return error_pb2.SUCCESS, blen, sysid, cmd, s1, s2, s3, s4
+        fmt = '>iHH16s'
+        blen, sysid, cmd, rid = struct.unpack(fmt, header)
+        return error_pb2.SUCCESS, blen, sysid, cmd, rid
     else:
-        return error_pb2.ERROR_DISCONNECT, 0, 0, 0, 0, 0, 0, 0
+        return error_pb2.ERROR_DISCONNECT, 0, 0, 0, 0
 
 
 # -----------------------------------------------------------------------------

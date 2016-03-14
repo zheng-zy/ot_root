@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='verify_product_info.proto',
   package='verify_product',
-  serialized_pb=_b('\n\x19verify_product_info.proto\x12\x0everify_product\"\x85\x01\n\x13verify_product_info\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\x12\x14\n\x0cspot_account\x18\x03 \x01(\t\x12\x16\n\x0e\x66uture_account\x18\x04 \x01(\t\x12\x16\n\x0eoption_account\x18\x05 \x01(\t\"u\n\x19Verify_Product_Query_Info\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x0cproduct_info\x18\x02 \x03(\x0b\x32#.verify_product.verify_product_info\x12\x0b\n\x03msg\x18\x03 \x01(\t\"2\n\x0bMTCLoginReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"-\n\x0cMTCLoginResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\")\n\x14ProductGroupQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"l\n\x15ProductGroupQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x34\n\ngroup_list\x18\x02 \x03(\x0b\x32 .verify_product.ProductGroupInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"{\n\x10ProductGroupInfo\x12\x18\n\x10product_group_id\x18\x01 \x02(\t\x12\x1a\n\x12product_group_name\x18\x02 \x02(\t\x12\x31\n\x0cproduct_list\x18\x03 \x03(\x0b\x32\x1b.verify_product.ProductInfo\"7\n\x0bProductInfo\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\"\'\n\x12\x43odeNumberQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"n\n\x13\x43odeNumberQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x38\n\x10\x63ode_number_list\x18\x02 \x03(\x0b\x32\x1e.verify_product.CodeNumberInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"H\n\x0e\x43odeNumberInfo\x12\x0c\n\x04\x66orm\x18\x01 \x02(\r\x12\x12\n\nstock_code\x18\x02 \x01(\t\x12\x14\n\x0corder_number\x18\x03 \x01(\r\"_\n\x10\x43odeNumberSetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x38\n\x10\x63ode_number_list\x18\x02 \x03(\x0b\x32\x1e.verify_product.CodeNumberInfo\"2\n\x11\x43odeNumberSetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"#\n\x0eLayoutQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"a\n\x0fLayoutQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12/\n\x0blayout_info\x18\x02 \x02(\x0b\x32\x1a.verify_product.LayoutInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"/\n\nLayoutInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x0e\n\x06layout\x18\x02 \x02(\x0c\"R\n\x0cLayoutSetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12/\n\x0blayout_info\x18\x02 \x02(\x0b\x32\x1a.verify_product.LayoutInfo\".\n\rLayoutSetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\"\n\rRightQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"D\n\x0eRightQueryResp\x12\x32\n\x0fright_info_list\x18\x01 \x03(\x0b\x32\x19.verify_product.RightInfo\"\xf5\x02\n\tRightInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x18\n\x10product_group_id\x18\x02 \x02(\t\x12\x12\n\nproduct_id\x18\x03 \x02(\t\x12\x15\n\rstock_max_buy\x18\x04 \x02(\x04\x12\x16\n\x0estock_max_sell\x18\x05 \x02(\x04\x12\x14\n\x0c\x66und_max_buy\x18\x06 \x02(\x04\x12\x15\n\rfund_max_sell\x18\x07 \x02(\x04\x12\x11\n\tis_future\x18\x08 \x02(\x08\x12\x11\n\tis_option\x18\t \x02(\x08\x12\x1c\n\x14repurchase_max_money\x18\n \x02(\x04\x12\x19\n\x11single_basket_max\x18\x0b \x02(\x04\x12(\n basket_stock_batch_discount_rate\x18\x0c \x02(\x05\x12\x1e\n\x16\x65tf_iopv_discount_rate\x18\r \x02(\x05\x12\"\n\x1a\x66uture_order_discount_rate\x18\x0e \x02(\x05\".\n\x07KeyInfo\x12\x10\n\x08key_name\x18\x01 \x02(\t\x12\x11\n\tkey_value\x18\x02 \x02(\t\" \n\x0bKeyQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"9\n\x0cKeyQueryResp\x12)\n\x08key_list\x18\x01 \x03(\x0b\x32\x17.verify_product.KeyInfo\"I\n\tKeySetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12)\n\x08key_list\x18\x02 \x03(\x0b\x32\x17.verify_product.KeyInfo\"+\n\nKeySetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"4\n\rRiskClientReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"\\\n\x0eRiskClientResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12+\n\tuser_info\x18\x02 \x01(\x0b\x32\x18.verify_product.UserInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"\x82\x01\n\x08UserInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x12\n\nis_manager\x18\x02 \x02(\x08\x12\x39\n\x0cproduct_list\x18\x03 \x03(\x0b\x32#.verify_product.verify_product_info\x12\x14\n\x0cis_privilege\x18\x04 \x02(\x08*\x87\x01\n\x0e\x43odeNumberForm\x12\x19\n\x15\x46ORM_FAST_CODE_NUMBER\x10\x01\x12\x14\n\x10\x46ORM_FAST_NUMBER\x10\x02\x12\x1a\n\x16\x46ORM_STOCK_CODE_NUMBER\x10\x03\x12\x12\n\x0e\x46ORM_FJJJ_CODE\x10\x04\x12\x14\n\x10\x46ORM_FJJJ_NUMBER\x10\x05')
+  serialized_pb=_b('\n\x19verify_product_info.proto\x12\x0everify_product\"\x85\x01\n\x13verify_product_info\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\x12\x14\n\x0cspot_account\x18\x03 \x01(\t\x12\x16\n\x0e\x66uture_account\x18\x04 \x01(\t\x12\x16\n\x0eoption_account\x18\x05 \x01(\t\"u\n\x19Verify_Product_Query_Info\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x0cproduct_info\x18\x02 \x03(\x0b\x32#.verify_product.verify_product_info\x12\x0b\n\x03msg\x18\x03 \x01(\t\"/\n\x08LoginReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"*\n\tLoginResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\")\n\x14ProductGroupQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"l\n\x15ProductGroupQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x34\n\ngroup_list\x18\x02 \x03(\x0b\x32 .verify_product.ProductGroupInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"{\n\x10ProductGroupInfo\x12\x18\n\x10product_group_id\x18\x01 \x02(\t\x12\x1a\n\x12product_group_name\x18\x02 \x02(\t\x12\x31\n\x0cproduct_list\x18\x03 \x03(\x0b\x32\x1b.verify_product.ProductInfo\"7\n\x0bProductInfo\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\"\'\n\x12\x43odeNumberQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"n\n\x13\x43odeNumberQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x38\n\x10\x63ode_number_list\x18\x02 \x03(\x0b\x32\x1e.verify_product.CodeNumberInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"H\n\x0e\x43odeNumberInfo\x12\x0c\n\x04\x66orm\x18\x01 \x02(\r\x12\x12\n\nstock_code\x18\x02 \x01(\t\x12\x14\n\x0corder_number\x18\x03 \x01(\r\"_\n\x10\x43odeNumberSetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x38\n\x10\x63ode_number_list\x18\x02 \x03(\x0b\x32\x1e.verify_product.CodeNumberInfo\"2\n\x11\x43odeNumberSetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"#\n\x0eLayoutQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"a\n\x0fLayoutQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12/\n\x0blayout_info\x18\x02 \x02(\x0b\x32\x1a.verify_product.LayoutInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"/\n\nLayoutInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x0e\n\x06layout\x18\x02 \x02(\x0c\"R\n\x0cLayoutSetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12/\n\x0blayout_info\x18\x02 \x02(\x0b\x32\x1a.verify_product.LayoutInfo\".\n\rLayoutSetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\"\n\rRightQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"c\n\x0eRightQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x32\n\x0fright_info_list\x18\x03 \x03(\x0b\x32\x19.verify_product.RightInfo\"\x91\x03\n\tRightInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x18\n\x10product_group_id\x18\x02 \x02(\t\x12\x12\n\nproduct_id\x18\x03 \x02(\t\x12\x15\n\rstock_max_buy\x18\x04 \x02(\x04\x12\x16\n\x0estock_max_sell\x18\x05 \x02(\x04\x12\x14\n\x0c\x66und_max_buy\x18\x06 \x02(\x04\x12\x15\n\rfund_max_sell\x18\x07 \x02(\x04\x12\x11\n\tis_future\x18\x08 \x02(\x08\x12\x11\n\tis_option\x18\t \x02(\x08\x12\x1c\n\x14repurchase_max_money\x18\n \x02(\x04\x12\x19\n\x11single_basket_max\x18\x0b \x02(\x04\x12(\n basket_stock_batch_discount_rate\x18\x0c \x02(\t\x12\x1e\n\x16\x65tf_iopv_discount_rate\x18\r \x02(\t\x12\"\n\x1a\x66uture_order_discount_rate\x18\x0e \x02(\t\x12\x1a\n\x12\x66jjj_discount_rate\x18\x0f \x02(\t\".\n\x07KeyInfo\x12\x10\n\x08key_name\x18\x01 \x02(\t\x12\x11\n\tkey_value\x18\x02 \x02(\t\" \n\x0bKeyQueryReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"X\n\x0cKeyQueryResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12)\n\x08key_list\x18\x03 \x03(\x0b\x32\x17.verify_product.KeyInfo\"I\n\tKeySetReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12)\n\x08key_list\x18\x02 \x03(\x0b\x32\x17.verify_product.KeyInfo\"+\n\nKeySetResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\"4\n\rRiskClientReq\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"\\\n\x0eRiskClientResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12+\n\tuser_info\x18\x02 \x01(\x0b\x32\x18.verify_product.UserInfo\x12\x0b\n\x03msg\x18\x03 \x01(\t\"\x82\x01\n\x08UserInfo\x12\x11\n\ttrader_id\x18\x01 \x02(\t\x12\x12\n\nis_manager\x18\x02 \x02(\x08\x12\x39\n\x0cproduct_list\x18\x03 \x03(\x0b\x32#.verify_product.verify_product_info\x12\x14\n\x0cis_privilege\x18\x04 \x02(\x08*\x87\x01\n\x0e\x43odeNumberForm\x12\x19\n\x15\x46ORM_FAST_CODE_NUMBER\x10\x01\x12\x14\n\x10\x46ORM_FAST_NUMBER\x10\x02\x12\x1a\n\x16\x46ORM_STOCK_CODE_NUMBER\x10\x03\x12\x12\n\x0e\x46ORM_FJJJ_CODE\x10\x04\x12\x14\n\x10\x46ORM_FJJJ_NUMBER\x10\x05')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -52,8 +52,8 @@ _CODENUMBERFORM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2452,
-  serialized_end=2587,
+  serialized_start=2536,
+  serialized_end=2671,
 )
 _sym_db.RegisterEnumDescriptor(_CODENUMBERFORM)
 
@@ -168,22 +168,22 @@ _VERIFY_PRODUCT_QUERY_INFO = _descriptor.Descriptor(
 )
 
 
-_MTCLOGINREQ = _descriptor.Descriptor(
-  name='MTCLoginReq',
-  full_name='verify_product.MTCLoginReq',
+_LOGINREQ = _descriptor.Descriptor(
+  name='LoginReq',
+  full_name='verify_product.LoginReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='trader_id', full_name='verify_product.MTCLoginReq.trader_id', index=0,
+      name='trader_id', full_name='verify_product.LoginReq.trader_id', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='password', full_name='verify_product.MTCLoginReq.password', index=1,
+      name='password', full_name='verify_product.LoginReq.password', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -201,26 +201,26 @@ _MTCLOGINREQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=300,
-  serialized_end=350,
+  serialized_end=347,
 )
 
 
-_MTCLOGINRESP = _descriptor.Descriptor(
-  name='MTCLoginResp',
-  full_name='verify_product.MTCLoginResp',
+_LOGINRESP = _descriptor.Descriptor(
+  name='LoginResp',
+  full_name='verify_product.LoginResp',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ret_code', full_name='verify_product.MTCLoginResp.ret_code', index=0,
+      name='ret_code', full_name='verify_product.LoginResp.ret_code', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='msg', full_name='verify_product.MTCLoginResp.msg', index=1,
+      name='msg', full_name='verify_product.LoginResp.msg', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -237,8 +237,8 @@ _MTCLOGINRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=352,
-  serialized_end=397,
+  serialized_start=349,
+  serialized_end=391,
 )
 
 
@@ -267,8 +267,8 @@ _PRODUCTGROUPQUERYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=399,
-  serialized_end=440,
+  serialized_start=393,
+  serialized_end=434,
 )
 
 
@@ -311,8 +311,8 @@ _PRODUCTGROUPQUERYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=442,
-  serialized_end=550,
+  serialized_start=436,
+  serialized_end=544,
 )
 
 
@@ -355,8 +355,8 @@ _PRODUCTGROUPINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=552,
-  serialized_end=675,
+  serialized_start=546,
+  serialized_end=669,
 )
 
 
@@ -392,8 +392,8 @@ _PRODUCTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=677,
-  serialized_end=732,
+  serialized_start=671,
+  serialized_end=726,
 )
 
 
@@ -422,8 +422,8 @@ _CODENUMBERQUERYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=734,
-  serialized_end=773,
+  serialized_start=728,
+  serialized_end=767,
 )
 
 
@@ -466,8 +466,8 @@ _CODENUMBERQUERYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=775,
-  serialized_end=885,
+  serialized_start=769,
+  serialized_end=879,
 )
 
 
@@ -510,8 +510,8 @@ _CODENUMBERINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=887,
-  serialized_end=959,
+  serialized_start=881,
+  serialized_end=953,
 )
 
 
@@ -547,8 +547,8 @@ _CODENUMBERSETREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=961,
-  serialized_end=1056,
+  serialized_start=955,
+  serialized_end=1050,
 )
 
 
@@ -584,8 +584,8 @@ _CODENUMBERSETRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1058,
-  serialized_end=1108,
+  serialized_start=1052,
+  serialized_end=1102,
 )
 
 
@@ -614,8 +614,8 @@ _LAYOUTQUERYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1110,
-  serialized_end=1145,
+  serialized_start=1104,
+  serialized_end=1139,
 )
 
 
@@ -658,8 +658,8 @@ _LAYOUTQUERYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1147,
-  serialized_end=1244,
+  serialized_start=1141,
+  serialized_end=1238,
 )
 
 
@@ -695,8 +695,8 @@ _LAYOUTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1246,
-  serialized_end=1293,
+  serialized_start=1240,
+  serialized_end=1287,
 )
 
 
@@ -732,8 +732,8 @@ _LAYOUTSETREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1295,
-  serialized_end=1377,
+  serialized_start=1289,
+  serialized_end=1371,
 )
 
 
@@ -769,8 +769,8 @@ _LAYOUTSETRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1379,
-  serialized_end=1425,
+  serialized_start=1373,
+  serialized_end=1419,
 )
 
 
@@ -799,8 +799,8 @@ _RIGHTQUERYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1427,
-  serialized_end=1461,
+  serialized_start=1421,
+  serialized_end=1455,
 )
 
 
@@ -812,8 +812,22 @@ _RIGHTQUERYRESP = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='right_info_list', full_name='verify_product.RightQueryResp.right_info_list', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      name='ret_code', full_name='verify_product.RightQueryResp.ret_code', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='verify_product.RightQueryResp.msg', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='right_info_list', full_name='verify_product.RightQueryResp.right_info_list', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -829,8 +843,8 @@ _RIGHTQUERYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1463,
-  serialized_end=1531,
+  serialized_start=1457,
+  serialized_end=1556,
 )
 
 
@@ -920,22 +934,29 @@ _RIGHTINFO = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='basket_stock_batch_discount_rate', full_name='verify_product.RightInfo.basket_stock_batch_discount_rate', index=11,
-      number=12, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
+      number=12, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='etf_iopv_discount_rate', full_name='verify_product.RightInfo.etf_iopv_discount_rate', index=12,
-      number=13, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
+      number=13, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='future_order_discount_rate', full_name='verify_product.RightInfo.future_order_discount_rate', index=13,
-      number=14, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
+      number=14, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='fjjj_discount_rate', full_name='verify_product.RightInfo.fjjj_discount_rate', index=14,
+      number=15, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -950,8 +971,8 @@ _RIGHTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1534,
-  serialized_end=1907,
+  serialized_start=1559,
+  serialized_end=1960,
 )
 
 
@@ -987,8 +1008,8 @@ _KEYINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1909,
-  serialized_end=1955,
+  serialized_start=1962,
+  serialized_end=2008,
 )
 
 
@@ -1017,8 +1038,8 @@ _KEYQUERYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1957,
-  serialized_end=1989,
+  serialized_start=2010,
+  serialized_end=2042,
 )
 
 
@@ -1030,8 +1051,22 @@ _KEYQUERYRESP = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='key_list', full_name='verify_product.KeyQueryResp.key_list', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      name='ret_code', full_name='verify_product.KeyQueryResp.ret_code', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='verify_product.KeyQueryResp.msg', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='key_list', full_name='verify_product.KeyQueryResp.key_list', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -1047,8 +1082,8 @@ _KEYQUERYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1991,
-  serialized_end=2048,
+  serialized_start=2044,
+  serialized_end=2132,
 )
 
 
@@ -1084,8 +1119,8 @@ _KEYSETREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2050,
-  serialized_end=2123,
+  serialized_start=2134,
+  serialized_end=2207,
 )
 
 
@@ -1121,8 +1156,8 @@ _KEYSETRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2125,
-  serialized_end=2168,
+  serialized_start=2209,
+  serialized_end=2252,
 )
 
 
@@ -1158,8 +1193,8 @@ _RISKCLIENTREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2170,
-  serialized_end=2222,
+  serialized_start=2254,
+  serialized_end=2306,
 )
 
 
@@ -1202,8 +1237,8 @@ _RISKCLIENTRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2224,
-  serialized_end=2316,
+  serialized_start=2308,
+  serialized_end=2400,
 )
 
 
@@ -1253,8 +1288,8 @@ _USERINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2319,
-  serialized_end=2449,
+  serialized_start=2403,
+  serialized_end=2533,
 )
 
 _VERIFY_PRODUCT_QUERY_INFO.fields_by_name['product_info'].message_type = _VERIFY_PRODUCT_INFO
@@ -1271,8 +1306,8 @@ _RISKCLIENTRESP.fields_by_name['user_info'].message_type = _USERINFO
 _USERINFO.fields_by_name['product_list'].message_type = _VERIFY_PRODUCT_INFO
 DESCRIPTOR.message_types_by_name['verify_product_info'] = _VERIFY_PRODUCT_INFO
 DESCRIPTOR.message_types_by_name['Verify_Product_Query_Info'] = _VERIFY_PRODUCT_QUERY_INFO
-DESCRIPTOR.message_types_by_name['MTCLoginReq'] = _MTCLOGINREQ
-DESCRIPTOR.message_types_by_name['MTCLoginResp'] = _MTCLOGINRESP
+DESCRIPTOR.message_types_by_name['LoginReq'] = _LOGINREQ
+DESCRIPTOR.message_types_by_name['LoginResp'] = _LOGINRESP
 DESCRIPTOR.message_types_by_name['ProductGroupQueryReq'] = _PRODUCTGROUPQUERYREQ
 DESCRIPTOR.message_types_by_name['ProductGroupQueryResp'] = _PRODUCTGROUPQUERYRESP
 DESCRIPTOR.message_types_by_name['ProductGroupInfo'] = _PRODUCTGROUPINFO
@@ -1314,19 +1349,19 @@ Verify_Product_Query_Info = _reflection.GeneratedProtocolMessageType('Verify_Pro
   ))
 _sym_db.RegisterMessage(Verify_Product_Query_Info)
 
-MTCLoginReq = _reflection.GeneratedProtocolMessageType('MTCLoginReq', (_message.Message,), dict(
-  DESCRIPTOR = _MTCLOGINREQ,
+LoginReq = _reflection.GeneratedProtocolMessageType('LoginReq', (_message.Message,), dict(
+  DESCRIPTOR = _LOGINREQ,
   __module__ = 'verify_product_info_pb2'
-  # @@protoc_insertion_point(class_scope:verify_product.MTCLoginReq)
+  # @@protoc_insertion_point(class_scope:verify_product.LoginReq)
   ))
-_sym_db.RegisterMessage(MTCLoginReq)
+_sym_db.RegisterMessage(LoginReq)
 
-MTCLoginResp = _reflection.GeneratedProtocolMessageType('MTCLoginResp', (_message.Message,), dict(
-  DESCRIPTOR = _MTCLOGINRESP,
+LoginResp = _reflection.GeneratedProtocolMessageType('LoginResp', (_message.Message,), dict(
+  DESCRIPTOR = _LOGINRESP,
   __module__ = 'verify_product_info_pb2'
-  # @@protoc_insertion_point(class_scope:verify_product.MTCLoginResp)
+  # @@protoc_insertion_point(class_scope:verify_product.LoginResp)
   ))
-_sym_db.RegisterMessage(MTCLoginResp)
+_sym_db.RegisterMessage(LoginResp)
 
 ProductGroupQueryReq = _reflection.GeneratedProtocolMessageType('ProductGroupQueryReq', (_message.Message,), dict(
   DESCRIPTOR = _PRODUCTGROUPQUERYREQ,

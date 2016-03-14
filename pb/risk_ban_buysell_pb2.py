@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='risk_ban_buysell.proto',
   package='risk_ban_buysell',
-  serialized_pb=_b('\n\x16risk_ban_buysell.proto\x12\x10risk_ban_buysell\"8\n\x0cproduct_info\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\"\x8a\x03\n\x15\x62\x61n_buy_ban_sell_info\x12>\n\x18\x62\x61sket_not_ban_buy_stock\x18\x01 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12?\n\x19\x62\x61sket_not_ban_sell_stock\x18\x02 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12:\n\x14\x62\x61sket_ban_buy_stock\x18\x03 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12;\n\x15\x62\x61sket_ban_sell_stock\x18\x04 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12:\n\x14single_ban_buy_stock\x18\x05 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12;\n\x15single_ban_sell_stock\x18\x06 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\"!\n\x0bProduct_Req\x12\x12\n\nproduct_id\x18\x01 \x01(\t\"@\n\x0cProduct_Resp\x12\x30\n\x08products\x18\x01 \x03(\x0b\x32\x1e.risk_ban_buysell.product_info\"#\n\rStock_Ban_Req\x12\x12\n\nproduct_id\x18\x01 \x02(\t\"_\n\x0eStock_Ban_Resp\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"4\n\nstock_info\x12\x12\n\nstock_code\x18\x01 \x02(\t\x12\x12\n\nstock_name\x18\x02 \x02(\t\"N\n\x11Stock_Ban_Add_Req\x12\x39\n\x08\x62\x61n_info\x18\x01 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"n\n\x12Stock_Ban_Add_Resp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\x12\x0b\n\x03msg\x18\x03 \x01(\t\"N\n\x11Stock_Ban_Del_Req\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"n\n\x12Stock_Ban_Del_Resp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\x12\x0b\n\x03msg\x18\x03 \x01(\t')
+  serialized_pb=_b('\n\x16risk_ban_buysell.proto\x12\x10risk_ban_buysell\"8\n\x0cproduct_info\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x14\n\x0cproduct_name\x18\x02 \x02(\t\"\x8a\x03\n\x15\x62\x61n_buy_ban_sell_info\x12>\n\x18\x62\x61sket_not_ban_buy_stock\x18\x01 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12?\n\x19\x62\x61sket_not_ban_sell_stock\x18\x02 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12:\n\x14\x62\x61sket_ban_buy_stock\x18\x03 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12;\n\x15\x62\x61sket_ban_sell_stock\x18\x04 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12:\n\x14single_ban_buy_stock\x18\x05 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\x12;\n\x15single_ban_sell_stock\x18\x06 \x03(\x0b\x32\x1c.risk_ban_buysell.stock_info\"!\n\x0bProduct_Req\x12\x12\n\nproduct_id\x18\x01 \x01(\t\"@\n\x0cProduct_Resp\x12\x30\n\x08products\x18\x01 \x03(\x0b\x32\x1e.risk_ban_buysell.product_info\"#\n\rStock_Ban_Req\x12\x12\n\nproduct_id\x18\x01 \x02(\t\"_\n\x0eStock_Ban_Resp\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"4\n\nstock_info\x12\x12\n\nstock_code\x18\x01 \x02(\t\x12\x12\n\nstock_name\x18\x02 \x02(\t\"b\n\x11Stock_Ban_Add_Req\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"n\n\x12Stock_Ban_Add_Resp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\x12\x0b\n\x03msg\x18\x03 \x01(\t\"b\n\x11Stock_Ban_Del_Req\x12\x12\n\nproduct_id\x18\x01 \x02(\t\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\"n\n\x12Stock_Ban_Del_Resp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x39\n\x08\x62\x61n_info\x18\x02 \x01(\x0b\x32\'.risk_ban_buysell.ban_buy_ban_sell_info\x12\x0b\n\x03msg\x18\x03 \x01(\t')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -299,8 +299,15 @@ _STOCK_BAN_ADD_REQ = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ban_info', full_name='risk_ban_buysell.Stock_Ban_Add_Req.ban_info', index=0,
-      number=1, type=11, cpp_type=10, label=1,
+      name='product_id', full_name='risk_ban_buysell.Stock_Ban_Add_Req.product_id', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='ban_info', full_name='risk_ban_buysell.Stock_Ban_Add_Req.ban_info', index=1,
+      number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -317,7 +324,7 @@ _STOCK_BAN_ADD_REQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=788,
-  serialized_end=866,
+  serialized_end=886,
 )
 
 
@@ -360,8 +367,8 @@ _STOCK_BAN_ADD_RESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=868,
-  serialized_end=978,
+  serialized_start=888,
+  serialized_end=998,
 )
 
 
@@ -373,7 +380,14 @@ _STOCK_BAN_DEL_REQ = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ban_info', full_name='risk_ban_buysell.Stock_Ban_Del_Req.ban_info', index=0,
+      name='product_id', full_name='risk_ban_buysell.Stock_Ban_Del_Req.product_id', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='ban_info', full_name='risk_ban_buysell.Stock_Ban_Del_Req.ban_info', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -390,8 +404,8 @@ _STOCK_BAN_DEL_REQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=980,
-  serialized_end=1058,
+  serialized_start=1000,
+  serialized_end=1098,
 )
 
 
@@ -434,8 +448,8 @@ _STOCK_BAN_DEL_RESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1060,
-  serialized_end=1170,
+  serialized_start=1100,
+  serialized_end=1210,
 )
 
 _BAN_BUY_BAN_SELL_INFO.fields_by_name['basket_not_ban_buy_stock'].message_type = _STOCK_INFO

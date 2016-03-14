@@ -98,32 +98,32 @@ class StockInfo(object):
                 price = self.md.pre_close
             return price
 
-        # if base_pb2.PRICE_2_PERCENT == pl:
-        #     if base_pb2.OPR_BUY == bs_flag:
-        #         price = self.md.match * 1.02
-        #         if price > self.md.high_limited:
-        #             price = self.md.high_limited
-        #     elif base_pb2.OPR_SELL == bs_flag:
-        #         price = self.md.match * 0.98
-        #         if price < self.md.low_limited:
-        #             price = self.md.low_limited
-        #     else:
-        #         print('error bs flag 0x%x' % (bs_flag))
-        #         price = self.md.ask_price
-        if base_pb2.LIMIT_DOWN == pl:
+        if 1 > pl > 0 or pl < 0:
+            if base_pb2.OPR_BUY == bs_flag:
+                price = self.md.match * (1 + pl)
+                if price > self.md.high_limited:
+                    price = self.md.high_limited
+            elif base_pb2.OPR_SELL == bs_flag:
+                price = self.md.match * (1 - pl)
+                if price < self.md.low_limited:
+                    price = self.md.low_limited
+            else:
+                print'error bs flag 0x%x' % (bs_flag)
+                price = self.md.ask_price
+            return price
+        elif base_pb2.LIMIT_DOWN == pl:
             price = self.md.low_limited
         elif base_pb2.LIMIT_UP == pl:
             price = self.md.high_limited
         elif base_pb2.PRICE_MATCH == pl:
             price = self.md.match
         elif pl > base_pb2.PRICE_MATCH:
-            price = self.md.bid_price[pl - base_pb2.S_1]
+            price = self.md.ask_price[pl - base_pb2.S_1]
         elif pl >= base_pb2.B_10:
-            price = self.md.ask_price[pl - base_pb2.B_10]
+            price = self.md.bid_price[base_pb2.B_1 - pl]
         else:
             price = self.md.match
-            print('error price level %d' % (pl))
-
+            print'error price level %d' % (pl)
         return price
 
 

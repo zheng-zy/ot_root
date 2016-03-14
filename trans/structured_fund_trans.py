@@ -23,7 +23,7 @@ class TranStructureFund(object):
                  'task', 'opr', 's3', 'pr_volume',
                  'bs_volume', 'status_id',
                  'ps', 'base_param', 'finished', 'buy_stocks_table', 'sell_stocks_table', 'all_order_table',
-                 'all_order_resp_table')
+                 'all_order_resp_table', 'estimated_amt', 'knock_amt', 'stage_lst', 'curr_stage')
 
     def __init__(self, robot, policy_id, pi, **kwargs):
         self.robot = robot
@@ -43,7 +43,23 @@ class TranStructureFund(object):
         # 所有订单,收到确认
         self.all_order_resp_table = {}
 
+        # 预估金额
+        self.estimated_amt = 0.0
+        # 成交金额
+        self.knock_amt = 0.0
+
+        # 组合使用
+        self.curr_stage = 1
+        self.stage_lst = [1]
+
         self.robot.set_transaction(policy_id, self)
+
+    def set_stage(self, curr_stage, stage_lst):
+        self.curr_stage = curr_stage
+        self.stage_lst = stage_lst
+
+    def next_stage(self):
+        self.curr_stage += 1
 
     def init_policy_status(self):
         self.ps.policy_id = self.policy_id
@@ -52,7 +68,7 @@ class TranStructureFund(object):
 
         self.ps.err.time_stamp = timeUtils.getCurrentTotalMSeconds()
         self.ps.err.code = 0
-        self.ps.err.reason = timeUtils.getCurrentTotalMSeconds()
+        self.ps.err.reason = ''
 
         self.ps.status = message.PLC_STS_CREATE
         self.ps.status_id = 1
@@ -63,17 +79,37 @@ class TranStructureFund(object):
         self.ps.s_s_amount = 0
         self.ps.match_volume = 0  # 单品种交易总成交量
         self.ps.logic_type = 'LogicTypeManual'  # logic_center策略类型。手动客户端会使用LogicTypeManual。
-        self.ps.robot_ip = robot.cfg['robot_listen']['rip']
+        self.ps.robot_ip = self.robot.cfg['robot_listen']['rip']
         self.ps.trader_id = self.pi.pack.base_param.trader_id
         self.ps.trader_ip = self.pi.pack.base_param.trader_ip
         self.ps.direction = self.pi.pack.base_param.direction
+        self.pack_and_send()
+
+    def get_sf_info(self, code):
+        # 获取市场和价格
+        mkid, lst = self.robot.quo.try_get_id(code)
+        if lst is None:
+            print 'stock code is lst not exist in quota'
+            return
+        # self.structured_fund_info = quota_data.QuotaData.get_structured_fund_info(self.code)
+        return lst[1].md
+
+    def _calculate_percentage(self):
+        estimated_amt = 0.0
+        match_amt = 0.0
+        for order_no, order in self.all_order_resp_table.items():
+            estimated_amt += order.estimated_amount
+            match_amt += order.match_amount
+        if estimated_amt != 0:
+            self.ps.percentage = match_amt / estimated_amt
+        pass
 
     def update_policy_status(self):
         """根据订单回报，更新策略状态"""
         before = self.ps.status
         order_status = 100
         for order_no, order in self.all_order_resp_table.items():
-            order_status = min(order_status, order.getRunStatus())
+            order_status = min(order_status, order.status)
         if 20 > order_status > 10:
             self.ps.status = message.PLC_STS_PROGRESSED
         elif 40 > order_status > 30:
@@ -81,11 +117,19 @@ class TranStructureFund(object):
         elif 50 > order_status > 40:
             self.ps.status = message.PLC_STS_CANCELLED
         elif order_status > 50:
-            self.ps.status = message.PLC_STS_FINISHED
+            self.next_stage()
+            if self.curr_stage in self.stage_lst:
+                self.execute(self.curr_stage)
+                self.ps.status = message.PLC_STS_PROGRESSED
+            else:
+                self.ps.status = message.PLC_STS_FINISHED
+
         elif 0 > order_status:
             self.ps.status = message.PLC_STS_FAILED
             pass
         print 'policy_id: [%s] update policy_status [%s] to [%s]' % (self.policy_id, before, self.ps.status)
+        self._calculate_percentage()
+        self.pack_and_send()
 
     def succeed(self, pi):
         """订单提交成功"""
@@ -106,15 +150,17 @@ class TranStructureFund(object):
         if order is None:
             return
         order.order_no = pi.pack.order_no
-        print '[%s] policy [%s] receive failed, request_id [%s] order_no [%s]' % (
-            self.LOG_TAG, self.policy_id, order.request_id, None)
+        print '[%s] policy [%s] receive failed, request_id [%s] ret_code [%s] ret_message [%s]' % (
+            self.LOG_TAG, self.policy_id, order.request_id, pi.pack.ret_code, pi.pack.ret_message)
         order.failed()
         self.update_policy_status()
         return self.ps
 
-    def canceling(self):
-        """撤单中,防止重复撤单"""
+    def cancel(self):
+        """撤单操作,防止重复撤单"""
         # self.status = OrderStatus.CANCELING
+        for order_no, order in self.all_order_resp_table.items():
+            order.cancel()
 
     def cancel_submit(self, pi):
         """撤单提交成功"""
@@ -127,18 +173,18 @@ class TranStructureFund(object):
         self.update_policy_status()
         return self.ps
 
-    def canceled(self, pi):
-        """撤单回报"""
-        stock_knocks = pi.pack.stock_knock
-        for knock in stock_knocks:
-            order = self.all_order_resp_table.get(knock.order_no)
-            if order is None:
-                return
-            print '[%s] policy [%s] receive canceled, request_id [%s] order_no [%s]' % (
-                self.LOG_TAG, self.policy_id, order.request_id, order.order_no)
-            order.canceled()
-        self.update_policy_status()
-        return self.ps
+    # def canceled(self, pi):
+    #     """撤单回报，合并到成交回报处理"""
+    #     stock_knocks = pi.pack.stock_knock
+    #     for knock in stock_knocks:
+    #         order = self.all_order_resp_table.get(knock.order_no)
+    #         if order is None:
+    #             return
+    #         print '[%s] policy [%s] receive canceled, request_id [%s] order_no [%s]' % (
+    #             self.LOG_TAG, self.policy_id, order.request_id, order.order_no)
+    #         order.canceled()
+    #     self.update_policy_status()
+    #     return self.ps
 
     def knock(self, pi):
         """成交回报处理"""
@@ -158,10 +204,17 @@ class TranStructureFund(object):
         sess = self.robot.sessions.get(self.ps.trader_id)
         if sess is not None:
             self.ps.time_stamp = timeUtils.getCurrentTotalMSeconds()
+            # print "**********************ps**************************"
+            # print self.ps
+            # print "************************************************"
             snddata = utils.make_package(base_pb2.SYS_ROBOT, base_pb2.CMD_POLICY_STATUS, self.pi.rid, self.ps)
             sess.sock.send(snddata)
+            # for sess_pm in self.robot.sub_sessions:
+            #     print sess_pm
+            #     sess_pm.sock.send(snddata)
 
-    def execute(self):
+
+    def execute(self, stage=1):
         """When you execute policy immidiately, you write you code here and call it"""
 
     def buy(self, code, price, qty, **kwargs):
@@ -214,12 +267,86 @@ class TranStructureFundBuy(TranStructureFund):
         if self.pi.pack.HasField('reorder_interval'):
             self.reorder_interval = self.pi.pack.reorder_interval
 
-    def execute(self):
-        if None in [self.code, self.qty, self.price_type]:
-            print 'Param is not right, pi.pack: %s' % self.pi.pack
-        if self.base_param.direction not in [0, 1]:
-            print 'Param is not right, direction: [%s]' % self.base_param.direction
-        self.buy(self.code, self.price_type, self.qty)
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty, self.price_type]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            if self.base_param.direction not in [0, 1]:
+                print 'Param is not right, direction: [%s]' % self.base_param.direction
+            self.buy(self.code, self.price_type, self.qty)
+
+
+class TranStructureFundSale(TranStructureFundBuy):
+    LOG_TAG = "TranStructureFundSale"
+
+    def __init__(self, robot, policy_id, pi, **kwargs):
+        super(TranStructureFundSale, self).__init__(robot, policy_id, pi, **kwargs)
+
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty, self.price_type]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            if self.base_param.direction not in [0, 1]:
+                print 'Param is not right, direction: [%s]' % self.base_param.direction
+            self.sell(self.code, self.price_type, self.qty)
+
+
+class TranStructureFundPurchase(TranStructureFund):
+    LOG_TAG = "TranStructureFundPurchase"
+
+    def __init__(self, robot, policy_id, pi, **kwargs):
+        super(TranStructureFundPurchase, self).__init__(robot, policy_id, pi, **kwargs)
+        self.code = self.pi.pack.code
+        self.qty = self.pi.pack.volume
+
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            self.qty = int(self.qty)
+            self.purchase(self.code, 0, self.qty)
+
+
+class TranStructureFundRedeem(TranStructureFundPurchase):
+    LOG_TAG = "TranStructureFundRedeem"
+
+    def __init__(self, robot, policy_id, pi, **kwargs):
+        super(TranStructureFundRedeem, self).__init__(robot, policy_id, pi, **kwargs)
+
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            self.qty = int(self.qty)
+            self.redeem(self.code, 0, self.qty)
+
+
+class TranStructureFundSplit(TranStructureFundPurchase):
+    LOG_TAG = "TranStructureFundSplit"
+
+    def __init__(self, robot, policy_id, pi, **kwargs):
+        super(TranStructureFundSplit, self).__init__(robot, policy_id, pi, **kwargs)
+
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            self.qty = int(self.qty)
+            self.split(self.code, 0, self.qty)
+
+
+class TranStructureFundCombine(TranStructureFundPurchase):
+    LOG_TAG = "TranStructureFundCombine"
+
+    def __init__(self, robot, policy_id, pi, **kwargs):
+        super(TranStructureFundCombine, self).__init__(robot, policy_id, pi, **kwargs)
+
+    def execute(self, stage=1):
+        if stage == 1:
+            if None in [self.code, self.qty]:
+                print 'Param is not right, pi.pack: %s' % self.pi.pack
+            self.qty = int(self.qty)
+            self.combine(self.code, 0, self.qty)
 
 
 import yaml

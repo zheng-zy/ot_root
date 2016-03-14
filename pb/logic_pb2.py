@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='logic.proto',
   package='logic',
-  serialized_pb=_b('\n\x0blogic.proto\x12\x05logic\"\xd0\x05\n\rPendingPolicy\x12\r\n\x05stkid\x18\x01 \x02(\t\x12\x12\n\nactiveflag\x18\x02 \x01(\x05\x12\x13\n\x0bpending_qty\x18\x03 \x01(\x05\x12\x12\n\ncancel_spd\x18\x04 \x01(\x01\x12\x11\n\tlevel_qty\x18\x05 \x01(\x05\x12\x14\n\x0cqty_perlevel\x18\x06 \x01(\x05\x12\x13\n\x0b\x61\x63\x63u_th_amt\x18\x07 \x01(\x01\x12\x11\n\tknock_amt\x18\x08 \x01(\x01\x12\x11\n\tpool_size\x18\t \x01(\x05\x12\x11\n\ttotal_num\x18\n \x01(\x05\x12\x31\n\tfut_th_li\x18\x0b \x03(\x0b\x32\x1e.logic.PendingPolicy.future_th\x12\x10\n\x08traderid\x18\x0c \x02(\t\x12\x11\n\tproductid\x18\r \x02(\t\x12\x0f\n\x07rf_flag\x18\x0e \x01(\x05\x12\x10\n\x08\x64iscount\x18\x0f \x01(\x01\x12\x0f\n\x07max_num\x18\x10 \x01(\x05\x12\x16\n\x0erf_accu_th_qty\x18\x11 \x01(\x01\x12\x0c\n\x04stop\x18\x12 \x01(\x05\x12\x0f\n\x07the_amt\x18\x13 \x01(\x01\x12\x13\n\x0bpolicy_type\x18\x14 \x02(\t\x12\x13\n\x0blevel_inter\x18\x15 \x02(\x05\x12\x1b\n\x13\x66uture_reorder_step\x18\x16 \x01(\x05\x12%\n\x17\x66uture_reorder_interval\x18\x17 \x01(\x05:\x04\x35\x30\x30\x30\x12 \n\x18\x66uture_reorder_max_times\x18\x18 \x01(\x05\x12\x13\n\x0bprice_ratio\x18\x19 \x02(\x05\x12\x16\n\x0e\x64\x65layed_single\x18\x1a \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x1b \x02(\r\x12 \n\x18single_fut_hedge_percent\x18\x1c \x02(\x05\x12\x18\n\x10if_hedge_percent\x18\x1d \x02(\x05\x1a+\n\tfuture_th\x12\x0e\n\x06\x66ut_id\x18\x01 \x02(\t\x12\x0e\n\x06the_th\x18\x02 \x02(\x01\"\xa2\x03\n\rFutSwapPolicy\x12\x11\n\tpool_size\x18\x01 \x01(\x05\x12\x11\n\ttotal_num\x18\x02 \x01(\x05\x12\x0e\n\x06th_net\x18\x03 \x01(\x05\x12\x12\n\npos_spread\x18\x04 \x01(\x01\x12\x12\n\nneg_spread\x18\x05 \x01(\x01\x12\x10\n\x08\x63urr_fut\x18\x06 \x02(\t\x12\x10\n\x08next_fut\x18\x07 \x02(\t\x12\x13\n\x0b\x63urr_is_act\x18\x08 \x02(\x05\x12\x14\n\x0c\x63urr_tri_qty\x18\t \x01(\x05\x12\x14\n\x0cnext_tri_qty\x18\n \x01(\x05\x12\x14\n\x0csupport_half\x18\x0b \x01(\x05\x12\x10\n\x08traderid\x18\x0c \x02(\t\x12\x11\n\tproductid\x18\r \x02(\t\x12\x0c\n\x04stop\x18\x0e \x01(\x05\x12\x14\n\x0creorder_flag\x18\x0f \x02(\x05\x12\x1e\n\x10reorder_interval\x18\x10 \x01(\x05:\x04\x33\x30\x30\x30\x12\x19\n\x11reorder_max_times\x18\x11 \x01(\x05\x12\x12\n\nactive_per\x18\x12 \x02(\x05\x12\x0f\n\x07pos_per\x18\x13 \x01(\x01\x12\x0f\n\x07neg_per\x18\x14 \x01(\x01\"@\n\nPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03key\x18\x02 \x02(\t\x12\x13\n\x0bpolicy_type\x18\x03 \x02(\t\"\xbd\x01\n\x0cPolicyStatus\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x0e\n\x06status\x18\x02 \x02(\t\x12\x11\n\tknock_amt\x18\x03 \x01(\x01\x12\x10\n\x08\x66inished\x18\x04 \x01(\x05\x12\x0e\n\x06\x66\x61iled\x18\x05 \x01(\x05\x12\x0c\n\x04part\x18\x06 \x01(\x05\x12\x0e\n\x06\x63reate\x18\x07 \x01(\x05\x12\x12\n\nprogressed\x18\x08 \x01(\x05\x12\x13\n\x0bpolicy_type\x18\t \x02(\t\x12\x14\n\x0crf_knock_qty\x18\n \x01(\x05\"7\n\x0ePolicyPosition\x12\x10\n\x08position\x18\x01 \x02(\x01\x12\x13\n\x0bpolicy_type\x18\x02 \x02(\t\" \n\x0bQueryPolicy\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"#\n\x0cPostionClear\x12\x13\n\x0bpolicy_type\x18\x01 \x02(\t')
+  serialized_pb=_b('\n\x0blogic.proto\x12\x05logic\"\xc0\x06\n\rPendingPolicy\x12\r\n\x05stkid\x18\x01 \x02(\t\x12\x12\n\nactiveflag\x18\x02 \x01(\x05\x12\x13\n\x0bpending_qty\x18\x03 \x01(\x05\x12\x12\n\ncancel_spd\x18\x04 \x01(\x01\x12\x11\n\tlevel_qty\x18\x05 \x01(\x05\x12\x14\n\x0cqty_perlevel\x18\x06 \x01(\x05\x12\x13\n\x0b\x61\x63\x63u_th_amt\x18\x07 \x01(\x01\x12\x11\n\tknock_amt\x18\x08 \x01(\x01\x12\x11\n\tpool_size\x18\t \x01(\x05\x12\x11\n\ttotal_num\x18\n \x01(\x05\x12\x31\n\tfut_th_li\x18\x0b \x03(\x0b\x32\x1e.logic.PendingPolicy.future_th\x12\x10\n\x08traderid\x18\x0c \x02(\t\x12\x11\n\tproductid\x18\r \x02(\t\x12\x0f\n\x07rf_flag\x18\x0e \x01(\x05\x12\x10\n\x08\x64iscount\x18\x0f \x01(\x01\x12\x0f\n\x07max_num\x18\x10 \x01(\x05\x12\x16\n\x0erf_accu_th_qty\x18\x11 \x01(\x01\x12\x0c\n\x04stop\x18\x12 \x01(\x05\x12\x0f\n\x07the_amt\x18\x13 \x01(\x01\x12\x13\n\x0bpolicy_type\x18\x14 \x02(\t\x12\x13\n\x0blevel_inter\x18\x15 \x02(\x05\x12\x1b\n\x13\x66uture_reorder_step\x18\x16 \x01(\x05\x12%\n\x17\x66uture_reorder_interval\x18\x17 \x01(\x05:\x04\x35\x30\x30\x30\x12 \n\x18\x66uture_reorder_max_times\x18\x18 \x01(\x05\x12\x13\n\x0bprice_ratio\x18\x19 \x02(\x05\x12\x16\n\x0e\x64\x65layed_single\x18\x1a \x02(\r\x12\x13\n\x0b\x64\x65layed_max\x18\x1b \x02(\r\x12 \n\x18single_fut_hedge_percent\x18\x1c \x02(\x05\x12\x18\n\x10if_hedge_percent\x18\x1d \x02(\x05\x12\x15\n\rpremium_ratio\x18\x1e \x01(\r\x12\x16\n\x0e\x64iscount_ratio\x18\x1f \x01(\r\x12\x1e\n\x16\x65tf_iopv_premium_ratio\x18  \x01(\r\x12\x1f\n\x17\x65tf_iopv_discount_ratio\x18! \x01(\r\x1a+\n\tfuture_th\x12\x0e\n\x06\x66ut_id\x18\x01 \x02(\t\x12\x0e\n\x06the_th\x18\x02 \x02(\x01\"\xbb\x03\n\rFutSwapPolicy\x12\x11\n\tpool_size\x18\x01 \x01(\x05\x12\x11\n\ttotal_num\x18\x02 \x01(\x05\x12\x0e\n\x06th_net\x18\x03 \x01(\x05\x12\x12\n\npos_spread\x18\x04 \x01(\x01\x12\x12\n\nneg_spread\x18\x05 \x01(\x01\x12\x10\n\x08\x63urr_fut\x18\x06 \x02(\t\x12\x10\n\x08next_fut\x18\x07 \x02(\t\x12\x13\n\x0b\x63urr_is_act\x18\x08 \x02(\x05\x12\x14\n\x0c\x63urr_tri_qty\x18\t \x01(\x05\x12\x14\n\x0cnext_tri_qty\x18\n \x01(\x05\x12\x10\n\x08traderid\x18\x0b \x02(\t\x12\x11\n\tproductid\x18\x0c \x02(\t\x12\x0c\n\x04stop\x18\r \x01(\x05\x12\x14\n\x0creorder_flag\x18\x0e \x02(\x05\x12\x1e\n\x10reorder_interval\x18\x0f \x01(\x05:\x04\x33\x30\x30\x30\x12\x19\n\x11reorder_max_times\x18\x10 \x01(\x05\x12\x12\n\nactive_per\x18\x11 \x02(\x05\x12\x0f\n\x07pos_per\x18\x12 \x01(\x01\x12\x0f\n\x07neg_per\x18\x13 \x01(\x01\x12\x15\n\rpremium_ratio\x18\x14 \x01(\r\x12\x16\n\x0e\x64iscount_ratio\x18\x15 \x01(\r\"@\n\nPolicyResp\x12\x10\n\x08ret_code\x18\x01 \x02(\x05\x12\x0b\n\x03key\x18\x02 \x02(\t\x12\x13\n\x0bpolicy_type\x18\x03 \x02(\t\"\xbd\x01\n\x0cPolicyStatus\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x0e\n\x06status\x18\x02 \x02(\t\x12\x11\n\tknock_amt\x18\x03 \x01(\x01\x12\x10\n\x08\x66inished\x18\x04 \x01(\x05\x12\x0e\n\x06\x66\x61iled\x18\x05 \x01(\x05\x12\x0c\n\x04part\x18\x06 \x01(\x05\x12\x0e\n\x06\x63reate\x18\x07 \x01(\x05\x12\x12\n\nprogressed\x18\x08 \x01(\x05\x12\x13\n\x0bpolicy_type\x18\t \x02(\t\x12\x14\n\x0crf_knock_qty\x18\n \x01(\x05\"7\n\x0ePolicyPosition\x12\x10\n\x08position\x18\x01 \x02(\x01\x12\x13\n\x0bpolicy_type\x18\x02 \x02(\t\" \n\x0bQueryPolicy\x12\x11\n\ttrader_id\x18\x01 \x02(\t\"#\n\x0cPostionClear\x12\x13\n\x0bpolicy_type\x18\x01 \x02(\t')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -57,8 +57,8 @@ _PENDINGPOLICY_FUTURE_TH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=700,
-  serialized_end=743,
+  serialized_start=812,
+  serialized_end=855,
 )
 
 _PENDINGPOLICY = _descriptor.Descriptor(
@@ -271,6 +271,34 @@ _PENDINGPOLICY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='premium_ratio', full_name='logic.PendingPolicy.premium_ratio', index=29,
+      number=30, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='discount_ratio', full_name='logic.PendingPolicy.discount_ratio', index=30,
+      number=31, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='etf_iopv_premium_ratio', full_name='logic.PendingPolicy.etf_iopv_premium_ratio', index=31,
+      number=32, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='etf_iopv_discount_ratio', full_name='logic.PendingPolicy.etf_iopv_discount_ratio', index=32,
+      number=33, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -283,7 +311,7 @@ _PENDINGPOLICY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=23,
-  serialized_end=743,
+  serialized_end=855,
 )
 
 
@@ -365,71 +393,78 @@ _FUTSWAPPOLICY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='support_half', full_name='logic.FutSwapPolicy.support_half', index=10,
-      number=11, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='traderid', full_name='logic.FutSwapPolicy.traderid', index=10,
+      number=11, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='traderid', full_name='logic.FutSwapPolicy.traderid', index=11,
+      name='productid', full_name='logic.FutSwapPolicy.productid', index=11,
       number=12, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='productid', full_name='logic.FutSwapPolicy.productid', index=12,
-      number=13, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='stop', full_name='logic.FutSwapPolicy.stop', index=13,
-      number=14, type=5, cpp_type=1, label=1,
+      name='stop', full_name='logic.FutSwapPolicy.stop', index=12,
+      number=13, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reorder_flag', full_name='logic.FutSwapPolicy.reorder_flag', index=14,
-      number=15, type=5, cpp_type=1, label=2,
+      name='reorder_flag', full_name='logic.FutSwapPolicy.reorder_flag', index=13,
+      number=14, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reorder_interval', full_name='logic.FutSwapPolicy.reorder_interval', index=15,
-      number=16, type=5, cpp_type=1, label=1,
+      name='reorder_interval', full_name='logic.FutSwapPolicy.reorder_interval', index=14,
+      number=15, type=5, cpp_type=1, label=1,
       has_default_value=True, default_value=3000,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reorder_max_times', full_name='logic.FutSwapPolicy.reorder_max_times', index=16,
-      number=17, type=5, cpp_type=1, label=1,
+      name='reorder_max_times', full_name='logic.FutSwapPolicy.reorder_max_times', index=15,
+      number=16, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='active_per', full_name='logic.FutSwapPolicy.active_per', index=17,
-      number=18, type=5, cpp_type=1, label=2,
+      name='active_per', full_name='logic.FutSwapPolicy.active_per', index=16,
+      number=17, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='pos_per', full_name='logic.FutSwapPolicy.pos_per', index=18,
+      name='pos_per', full_name='logic.FutSwapPolicy.pos_per', index=17,
+      number=18, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='neg_per', full_name='logic.FutSwapPolicy.neg_per', index=18,
       number=19, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='neg_per', full_name='logic.FutSwapPolicy.neg_per', index=19,
-      number=20, type=1, cpp_type=5, label=1,
+      name='premium_ratio', full_name='logic.FutSwapPolicy.premium_ratio', index=19,
+      number=20, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='discount_ratio', full_name='logic.FutSwapPolicy.discount_ratio', index=20,
+      number=21, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -445,8 +480,8 @@ _FUTSWAPPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=746,
-  serialized_end=1164,
+  serialized_start=858,
+  serialized_end=1301,
 )
 
 
@@ -489,8 +524,8 @@ _POLICYRESP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1166,
-  serialized_end=1230,
+  serialized_start=1303,
+  serialized_end=1367,
 )
 
 
@@ -582,8 +617,8 @@ _POLICYSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1233,
-  serialized_end=1422,
+  serialized_start=1370,
+  serialized_end=1559,
 )
 
 
@@ -619,8 +654,8 @@ _POLICYPOSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1424,
-  serialized_end=1479,
+  serialized_start=1561,
+  serialized_end=1616,
 )
 
 
@@ -649,8 +684,8 @@ _QUERYPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1481,
-  serialized_end=1513,
+  serialized_start=1618,
+  serialized_end=1650,
 )
 
 
@@ -679,8 +714,8 @@ _POSTIONCLEAR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1515,
-  serialized_end=1550,
+  serialized_start=1652,
+  serialized_end=1687,
 )
 
 _PENDINGPOLICY_FUTURE_TH.containing_type = _PENDINGPOLICY

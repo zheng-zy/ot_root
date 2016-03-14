@@ -22,6 +22,15 @@ Redeem = 4
 SZ = 0
 SH = 1
 
+ACTION_TYPE_NORMAL = 0
+ACTION_TYPE_CANCEL = 1
+
+# 撤单
+# [1]：买卖申赎，[2]：撤单，[-1]：废单，[-2]：撤单废单
+MATCH_TYPE_NORMAL = 1
+MATCH_TYPE_WITHDRAWS = 2
+MATCH_TYPE_WASTE = -1
+MATCH_TYPE_WITHDRAWS_WASTE = -2
 
 class OrderStatus:
     """
@@ -51,3 +60,7 @@ class OrderStatus:
 
     def __init__(self):
         pass
+
+
+if __name__ == "__main__":
+    pass

@@ -6,7 +6,7 @@
 
 import gevent
 
-from core import robot
+import robot
 # import rserver
 from quota import pre_quotation, quotation
 # import riskmgt

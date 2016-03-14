@@ -5,7 +5,6 @@
 """ a robot
 """
 
-
 import gevent
 # from gevent import socket
 import struct
@@ -19,12 +18,11 @@ from pb import error_pb2
 from pb import pq_quota_pb2
 from pb import quotation_def_pb2
 from pb import quota_pb2
+from pb import structured_fund_pb2
 
 import quotation
 
-
 __author__ = 'qinjing'
-
 
 RED = '\033[31m'
 GREEN = '\033[32m'
@@ -125,6 +123,7 @@ class PreQuotation(baseclient.BaseClient):
     def __init__(self, app, addr):
         super(PreQuotation, self).__init__(app, addr)
         self.etfs = {}
+        self.sf_info = {}
         self.quo = self.app.quo
         self.seq = 0
         self.sublist = []
@@ -157,7 +156,7 @@ class PreQuotation(baseclient.BaseClient):
             pi.pack = etfbase
             self.etf_base_info_handle(pi)
         elif ((base_pb2.CMD_HEARTBEAT_REQ == pi.cmd or
-               base_pb2.CMD_HEARTBEAT_RESP == pi.cmd)):
+                       base_pb2.CMD_HEARTBEAT_RESP == pi.cmd)):
             # print('LYMK_HEARTBEAT_REQ ')
             self.send_heartbeat(base_pb2.SYS_QUOTATION)
             # fmt = ">iHHiiii"
@@ -167,9 +166,10 @@ class PreQuotation(baseclient.BaseClient):
             # self.svr_sock.sendall(headbuffer)
         elif quotation_def_pb2.LYMK_STRUCTURED_FUND_BASE == pi.cmd:
             # print('LYMK_STRUCTURED_FUND_BASE')
-            pack = pq_quota_pb2.StructuredFundInfo()
+            pack = structured_fund_pb2.structured_fund()
             pack.ParseFromString(body)
             pi.pack = pack
+            self.sf_info[pack.m_stk_id] = pack
         elif quotation_def_pb2.LYMK_FJJJ_INFO == pi.cmd:
             # print('LYMK_FJJJ_INFO')
             pack = pq_quota_pb2.StructuredFundInfo()
@@ -256,7 +256,7 @@ class PreQuotation(baseclient.BaseClient):
                 # if stk_etf.stock_id == '000001':
                 #     print '000001 in', ecode, lst[1], lst[0]
                 self.quo.try_send(
-                    md, quotation_def_pb2.LYMK_MARKETDATA_REQ_BY_IDNUM)
+                        md, quotation_def_pb2.LYMK_MARKETDATA_REQ_BY_IDNUM)
 
         self.log.write('\n')
         return 0
@@ -282,6 +282,7 @@ class RobotApp(object):
     quo = None  # quotation stock server
     # q_f_sock = None  # quotation future server
     pre_quo = None  # quotation pre stock server
+
     # q_p_f_sock = None  # quotation pre future server
 
     def __init__(self, conf):
@@ -312,20 +313,20 @@ def timer_proc(rapp):
                 print etf.stcks[base_pb2.MKT_SZ][0]
                 print etf.stcks[base_pb2.MKT_SZ][0].md
 
-            # if ((one in etf.stcks[base_pb2.MKT_SZ] or
-            #      one in etf.stcks[base_pb2.MKT_SH] or
-            #      one in etf.stcks[base_pb2.MKT_CF])):
-            #     stkinfo = etf.stcks[base_pb2.MKT_SZ][one]
-            #     print(stkinfo)
-            #     print stkinfo.md
-            # print('%d %s %s' % (len(rapp.pre_quo.etfs),
-            #       key, type(etf.stcks[base_pb2.MKT_SZ])))
-            # print('etf.stcks[base_pb2.MKT_SZ] %d' %
-            #       (len(etf.stcks[base_pb2.MKT_SZ])))
-            # print('etf.stcks[base_pb2.MKT_SH] %d' %
-            #       (len(etf.stcks[base_pb2.MKT_SH])))
-            # print('etf.stcks[base_pb2.MKT_CF] %d' %
-            #       (len(etf.stcks[base_pb2.MKT_CF])))
+                # if ((one in etf.stcks[base_pb2.MKT_SZ] or
+                #      one in etf.stcks[base_pb2.MKT_SH] or
+                #      one in etf.stcks[base_pb2.MKT_CF])):
+                #     stkinfo = etf.stcks[base_pb2.MKT_SZ][one]
+                #     print(stkinfo)
+                #     print stkinfo.md
+                # print('%d %s %s' % (len(rapp.pre_quo.etfs),
+                #       key, type(etf.stcks[base_pb2.MKT_SZ])))
+                # print('etf.stcks[base_pb2.MKT_SZ] %d' %
+                #       (len(etf.stcks[base_pb2.MKT_SZ])))
+                # print('etf.stcks[base_pb2.MKT_SH] %d' %
+                #       (len(etf.stcks[base_pb2.MKT_SH])))
+                # print('etf.stcks[base_pb2.MKT_CF] %d' %
+                #       (len(etf.stcks[base_pb2.MKT_CF])))
 
 
 # -----------------------------------------------------------------------------
